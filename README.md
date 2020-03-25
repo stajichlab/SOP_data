@@ -1,5 +1,7 @@
 ## Stajich Laboratory Standard Operating Proceures
 
+![SOP Logo](img/SOP_card.jpg)
+
 Files associated with Lab practices are provided here.
 
 The lab general [Code of Conduct](CODE_OF_CONDUCT) provides an outline for what are expected behaviors and respect regarding our interactions.
