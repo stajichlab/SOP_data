@@ -5,7 +5,7 @@ __more here__
 
 One important aspect is Locus Prefixes. Make sure you have checked that box as we will use that
 
-![NCBI submit page 1](img/ncbi_submit_bioproject_1.png)
+![NCBI submit page 1](../img/ncbi_submit_bioproject_1.png)
 
 # Creating BioSample
 
@@ -19,9 +19,9 @@ To stage data with an upload to the NCBI upload site we use a command line tool.
 However for larger dataset using [Aspera](https://www.ncbi.nlm.nih.gov/books/NBK242625/) is better as it is a faster upload mechanism which utilizes a parallel networking technology called [FASP](https://en.wikipedia.org/wiki/Fast_and_Secure_Protocol). It can achieve upload speeds 10-50x faster than typical single FTP upload speeds so for large Illumina datasets this is critical.
 
 To do an upload you need to use  out your unique folder associated with your NCBI account you need to go to [NCBI submission] (https://submit.ncbi.nlm.nih.gov/subs/genome/) site and click on either the Aspera command line or FTP menu.
-![NCBI submit page 1](img/ncbi_submit_main.png)
+![NCBI submit page 1](../img/ncbi_submit_main.png)
 
-![NCBI submit page 2](img/ncbi_submit_main_2.png)
+![NCBI submit page 2](../img/ncbi_submit_main_2.png)
 
 ```
 module load aspera
@@ -42,9 +42,9 @@ password: <put in your password>
 
 These data are pulled in by the NCBI in the upload process, but it will take 10-15 minutes once you have uploaded the data. If you have datasets that are associated with different upload projects (eg Genome 1, Genome 2, Amplicon data set 2) make a folder for each genome dataset because during the submission upload you will select a folder to associate with a submit. I usually make a folder based on each Bioproject - so the upload folder name can be in the upload name (since it will have the bioproject name) `subasp@upload.ncbi.nlm.nih.gov:uploads/YOUREMAIL_XXXX/BIOPROJECTXX`.
 
-![NCBI submit Genome page 1](img/ncbi_submit_genome_1.png)
+![NCBI submit Genome page 1](../img/ncbi_submit_genome_1.png)
 
-![NCBI submit Genome page 2](img/ncbi_submit_genome_2.png)
+![NCBI submit Genome page 2](../img/ncbi_submit_genome_2.png)
 
 # SRA deposition
 
