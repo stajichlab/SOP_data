@@ -1,4 +1,4 @@
-# Best Practices for Coding in Stajich lab
+# Best Practices for Data management in Stajich lab
 
 File naming
 
