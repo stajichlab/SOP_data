@@ -4,7 +4,7 @@
 
 Files associated with Lab practices are provided here.
 
-The lab general [Code of Conduct](CODE_OF_CONDUCT) provides an outline for what are expected behaviors and respect regarding our interactions.
+The lab general [Code of Conduct](CODE_OF_CONDUCT.md) provides an outline for what are expected behaviors and respect regarding our interactions.
 
 The [Data and Code Procedures](Data_and_Code) provide an outline on how data management, submissions, and source code are expected to be handled.
  
