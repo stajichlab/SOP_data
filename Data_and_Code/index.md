@@ -19,6 +19,7 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
 
 ## Amplicon Analysis
 
+* [AMPtk Data analysis on UCR HPCC](AMPtk)
 * 16S Bacteria and Archaea
 * ITS Fungal
 
