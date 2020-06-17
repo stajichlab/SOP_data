@@ -8,7 +8,7 @@ Although, this study has both 16S and ITS amplicon data, we will perform data pr
 Data are already available on stajichlab UCR HPCC. We will set up our analysis folder using following instructions.
 
 [Sequencing setup](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090234#)
-![](img/primer_setup.png)
+![](../img/primer_setup.png)
 
 ITS primers for this project contain unique barcode for each sample. We usually submit ~250 samples per illumina miseq run. After sequencing process, the barcodes will be used to split sequences into fastq file for each sample.
 
@@ -82,7 +82,7 @@ There are several different file format that could be generated from Illumina Mi
 - remove (trim) primer sequences
 - if sequence is longer than --trim_len, truncate sequence
 
-![](img/merge.jpg)
+![](../img/merge.jpg)
 [Merged PE reads](https://www.drive5.com/usearch/manual10/merge_pair.html)
 
 You can use `nano` editor to simply create `01_AMPtk_ITS.sh` script by copyign following command to `nano` and save the sceript in `pipeline` folder.
@@ -127,7 +127,7 @@ fi
 
 
 ### STEP 2. Clustering
-![](img/uparseotu_algo.jpg)
+![](../img/uparseotu_algo.jpg)
 [Clustering](https://www.drive5.com/usearch/manual/uparseotu_algo.html)
 
 This step will cluster sequences into Operational Taxonomy Unit (OTU), then generate representative OTU sequences and OTU table. OTU generation pipelines in AMPtk uses UPARSE clustering with 97% similarity (this can be changed).
