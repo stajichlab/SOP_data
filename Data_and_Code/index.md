@@ -19,12 +19,14 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
 
 ## Amplicon Analysis
 
-* [AMPtk Data analysis on UCR HPCC](AMPtk)
+* [UCR HPCC AMPtk amplicon (microbiome) analysis](AMPtk)
 * 16S Bacteria and Archaea
 * ITS Fungal
 
 ## Metagenome
 
-* Data cleaning
-* Metagenome Assembly
-* Metagenome annotation and Analysis
+* [KBase Metagenomes Analysis](KBase)
+* UCR HPCC Metagenomes Analysis
+  * Data cleaning
+  * Metagenome Assembly
+  * Metagenome annotation and Analysis

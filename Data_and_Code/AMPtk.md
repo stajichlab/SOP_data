@@ -1,6 +1,6 @@
-# NGS Amplicon Data Processing using AMPtk 
+# Amplicon Data Processing using AMPtk 
 
-We will use [AMPtk](https://amptk.readthedocs.io/en/latest/index.html) to process NGS amplicon data.
+We will use [AMPtk](https://amptk.readthedocs.io/en/latest/index.html) to process amplicon data.
 
 We can get this data from a public dataset stored in NCBI. First let's look at the BioProject page [PRJNA379160](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA379160/). This page provides links to the 98 SRA experiments for 16S and ITS amplicon data from Antarctic cryptoendolithic communities.
 
