@@ -38,9 +38,9 @@ You got some nice figures on your html link- what does it all mean?
 
 
 My main focus is the top summary figure.
-![](..img/Bad_quality_summary_statistics.png)
+![](../img/Bad_quality_summary_statistics.png)
 This is a bad quality read.
-![](..img/Good_quality_summary_statistics.png)
+![](../img/Good_quality_summary_statistics.png)
 This one is much much better.
 
 It gives you the total number of reads and that way you can see if the sequencing was successful or not. 
