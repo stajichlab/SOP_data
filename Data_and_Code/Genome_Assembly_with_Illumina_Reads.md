@@ -101,7 +101,7 @@ Augustus = /shared/pkg/augustus - you could symlink this to the same directory. 
  Finally you'll be creating your `pipeline` folder. It's best if you copy this entire folder from another worked through Assembly folder. (cp -r)
  
  ## 04- Let's Assemble!
- Dr. Stajich has played with different assemblers over the years. But his main brain child is the AAFTF wrapper. ![](../img/AAFTF/png)
+ Dr. Stajich has played with different assemblers over the years. But his main brain child is the AAFTF wrapper. ![](../img/AAFTF.png)
  *wrappers are code that helps put a bunch of other code together to be run sequentially.
  
  #AAFTF- Automatic Assembly For The Fungi - https://github.com/stajichlab/AAFTF 
