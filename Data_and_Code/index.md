@@ -4,6 +4,7 @@
 
 * [Coding Best Practices](Best_Practices_Coding)
 * Electronic Lab Noteboooks
+* [How to Create an SOP](How_to_create_an_SOP)
 
 ## Data deposition
 
