@@ -13,7 +13,7 @@
 ## Genome Analysis
 Before annotating or assembling it is a good idea to start the BioSample and BioProject (once you know the sample is clean)
 
-* Assembly
+* [Fungal Genome_Assembly_with_Illumina_Reads](Genome_Assembly_with_Illumina_Reads)
 * [Fungal Genome annotation](Fungal_Genome_annotation)
 
 
