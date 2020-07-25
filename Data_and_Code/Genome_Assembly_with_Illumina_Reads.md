@@ -9,7 +9,7 @@ Our HPCC/cluster has it saved as a module. So load it in with module load fastqc
 
 I always recommend running the help option for every new program you encounter this way you can see all the options available. 
 Type in fastqc -h to view the multiple options this program has.
-![](FastQC1.png)![](FastQC2.png)![](FastQC3.png)
+![](../img/FastQC1.png)![](../img/FastQC2.png)![](../img/FastQC3.png)
 
 Make sure your files are in a proper folder. Create the folder `FastQC` in the same directory as your data. 
 When I run FastQC on my samples I run it through these options.
@@ -19,7 +19,7 @@ fastqc XX_1.fastq.gz XX_2.fastq.gz --noextract -o FastQC
 ```
 
 
-All I've expressed here is - run fastqc on my forward run (_1) and my reverse run (_2), adding in --noextract allows my fastq.gz files to remain zipped.
+All I've expressed here is - run fastqc on my forward run (1) and my reverse run (2), adding in --noextract allows my fastq.gz files to remain zipped.
 
 We do this to conserve space, but also our assembly programs accept files in this format so there's no need to unzip them. 
 
@@ -38,9 +38,9 @@ You got some nice figures on your html link- what does it all mean?
 
 
 My main focus is the top summary figure.
-![](Bad_quality_summary_statistics.png)
+![](..img/Bad_quality_summary_statistics.png)
 This is a bad quality read.
-![] (Good_quality_summary_statistics.png)
+![](..img/Good_quality_summary_statistics.png)
 This one is much much better.
 
 It gives you the total number of reads and that way you can see if the sequencing was successful or not. 
@@ -67,9 +67,10 @@ Whatever number your array is on, it will consider that line of code. I.E. N = 1
 -PHYLUM = List the phylum of your strain!
 
 Your document should look like this
-
+```
 Exophiala_xenobiotica,TK68,Ascomycete
 Exophiala_xenobiotica,TK66,Ascomycete
+```
 
 ..
 Once complete it helps to do a quick `wc -l samples.csv` on your terminal to see how many lines this is. It will come in handy when you run them in an array. 
@@ -96,7 +97,7 @@ Augustus = /shared/pkg/augustus - you could symlink this to the same directory. 
  Finally you'll be creating your `pipeline` folder. It's best if you copy this entire folder from another worked through Assembly folder. (cp -r)
  
  ## 04- Let's Assemble!
- Dr. Stajich has played with different assemblers over the years. But his main brain child is the AAFTF wrapper. ![](AAFTF/png)
+ Dr. Stajich has played with different assemblers over the years. But his main brain child is the AAFTF wrapper. ![](..img/AAFTF/png)
  *wrappers are code that helps put a bunch of other code together to be run sequentially.
  
  #AAFTF- Automatic Assembly For The Fungi - https://github.com/stajichlab/AAFTF 
@@ -121,6 +122,7 @@ If you did not copy the pipeline folder from another directory- copy and paste t
 ---------
 Script begins
 ---------
+
 ```bash
 #!/usr/bin/bash
 #SBATCH -N 1 -n 8 --mem 64gb --time 72:00:00 --out logs/AAFTF_new.%a.log
