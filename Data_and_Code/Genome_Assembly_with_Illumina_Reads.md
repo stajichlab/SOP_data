@@ -1,52 +1,70 @@
 
-## 00-You got your full genome sequencing results from Illumina, now what?
+## You got your full genome sequencing results from Illumina, now what?
 Usually Dr. Stajich has access and downloads this into the cluster under shared/projects/.
 
 ## 01-Let's run a diagnostic or FastQC on your reads
+
 In order to tell if your sequence results were conclusive run the program FastQC.
 Our HPCC/cluster has it saved as a module. So load it in with module load fastqc.
 
 I always recommend running the help option for every new program you encounter this way you can see all the options available. 
 Type in fastqc -h to view the multiple options this program has.
+![](FastQC1.png)![](FastQC2.png)![](FastQC3.png)
 
-Make sure your files are in a proper folder. Create the folder FastQC in the same directory as your data. 
+Make sure your files are in a proper folder. Create the folder `FastQC` in the same directory as your data. 
 When I run FastQC on my samples I run it through these options.
 
-** fastqc XX_1.fastq.gz XX_2.fastq.gz --noextract -o FastQC  
+```bash
+fastqc XX_1.fastq.gz XX_2.fastq.gz --noextract -o FastQC  
+```
+
+
 All I've expressed here is - run fastqc on my forward run (_1) and my reverse run (_2), adding in --noextract allows my fastq.gz files to remain zipped.
+
 We do this to conserve space, but also our assembly programs accept files in this format so there's no need to unzip them. 
-My last step -o FastQC just directs my results into my FastQC folder, this way it is organized and away from the original data.
+
+My last step -o FastQC just directs my results into my `FastQC` folder, this way it is organized and away from the original data.
 
 You can run this all on your directory or pass it through slurm. Though I've noticed the more you add in the script the more likely the code breaks.
 
-As the code runs and finishes the files are created in FastQC. Direct yourself into the folder to observe the files.
+As the code runs and finishes the files are created in `FastQC`. Direct yourself into the folder to observe the files.
 Each read (forward and reverse) will have run separately and you will receive two files each (4 total). One being a zip file and the other an html file.
 
-Find the SOP info or the suggestions on the HPCC webpage (http://hpcc.ucr.edu) on how to link your html files to your .html folder in your home page. 
+Find the suggestions on the HPCC webpage (http://hpcc.ucr.edu) on how to link your html files to your `.html` folder in your home page. 
 That way you can open up your cluster onto an html link and view the report.
 
 ## 001-How to read your diagnostic results
 You got some nice figures on your html link- what does it all mean?
-My main focus is the top summary figure. It gives you the total number of reads and that way you can see if the sequencing was successful or not. 
-Look for checkmarks and see if your sequence lengths are good. (Work on this section more.)
+
+
+My main focus is the top summary figure.
+![](Bad_quality_summary_statistics.png)
+This is a bad quality read.
+![] (Good_quality_summary_statistics.png)
+This one is much much better.
+
+It gives you the total number of reads and that way you can see if the sequencing was successful or not. 
+Look for checkmarks and see if your sequence lengths are good.
+If you are curious there is a FastQC Manual (https://rtsf.natsci.msu.edu/genomics/tech-notes/fastqc-tutorial-and-faq/) to help clarify your concerns.
+
 
 ## 02- Create your samples.csv
 What's this? It'll be the document you direct your script to look into. It'll have information you'll be needing to help assemble your genomes.
 Basically you'll be creating a basic text file that describes your strains.
 
-In Dr. Stajich's code he has a line that reads sed -n ${N}p $SAMPLEFILE | while read BASE STRAIN PHYLUM
+In Dr. Stajich's code he has a line that reads `sed -n ${N}p $SAMPLEFILE | while read BASE STRAIN PHYLUM`
 
-What this line of code does is that it considers your N
+What this line of code does is that it considers your `N`
 
 (this will be the iteration your code is running in. If you've got more than one strain running it'll be run as an array, described more later)
 
 Whatever number your array is on, it will consider that line of code. I.E. N = 1, will read the first line, etc.
 
-**BASE = I consider the Genus and species name of your organism. If you're unsure of the species going for sp. is good too.
+-BASE = I consider the Genus and species name of your organism. If you're unsure of the species going for sp. is good too.
 
-**STRAIN = Will be the short letter format of your reads. Usually it'll be in a format you sent to the company who did your sequencing. 
+-STRAIN = Will be the short letter format of your reads. Usually it'll be in a format you sent to the company who did your sequencing. 
 
-**PHYLUM = List the phylum of your strain!
+-PHYLUM = List the phylum of your strain!
 
 Your document should look like this
 
@@ -54,47 +72,47 @@ Exophiala_xenobiotica,TK68,Ascomycete
 Exophiala_xenobiotica,TK66,Ascomycete
 
 ..
-Once complete it helps to do a quick wc -l samples.csv on your terminal to see how many lines this is. It will come in handy when you run them in an array. 
+Once complete it helps to do a quick `wc -l samples.csv` on your terminal to see how many lines this is. It will come in handy when you run them in an array. 
 
 It's very important you take a look at Dr. Stajich's scripts and follow along that sed line. It'll help direct you on what your samples file should look like. 
 
 ## 03- Orienting your workspace
 Make sure you have your directory all set up to do your assembly analysis. 
 
-Have your Illumina sequence data in your input/ folder.
+Have your Illumina sequence data in your `input/` folder.
 
 Have your samples.csv file sitting in the main directory where your input folder lives.
 
-Now let's create another folder - logs
+Now let's create another folder - `logs`
 
-This folder may sometimes be the reason your code doesn't run. Just mkdir logs
+This folder may sometimes be the reason your code doesn't run. Just mkdir `logs`
 
-It is also really important to import the augustus folder to the same directory.
+It is also really important to import the `augustus` folder to the same directory.
 
-Augustus = /shared/pkg/augustus - you could symlink this to the same directory.
+Augustus = /shared/pkg/augustus - you could symlink this to the same directory. ('ln -s /shared/pkg/augustus')
 
  ** Or if you're in another assembly folder worked on Dr. Stajich or others you can cp -r that folder to your directory.
  
- Finally you'll be creating your pipeline folder. It's best if you copy this entire folder from another worked through Assembly folder. (cp -r)
+ Finally you'll be creating your `pipeline` folder. It's best if you copy this entire folder from another worked through Assembly folder. (cp -r)
  
  ## 04- Let's Assemble!
- Dr. Stajich has played with different assemblers over the years. But his main brain child is the AAFTF wrapper.
+ Dr. Stajich has played with different assemblers over the years. But his main brain child is the AAFTF wrapper. ![](AAFTF/png)
  *wrappers are code that helps put a bunch of other code together to be run sequentially.
  
  #AAFTF- Automatic Assembly For The Fungi - https://github.com/stajichlab/AAFTF 
  
  Steps are described below:
  
-AAFTF trim  Trim FASTQ input reads - with BBMap
-AAFTF filter  Filter contaminanting reads - with BBMap
-AAFTF assemble  Assemble reads - with SPAdes
-AAFTF vecscreen Vector and Contaminant Screening of assembled contigs - with BlastN based method to replicate NCBI screening
-AAFTF sourpurge Purge contigs based on sourmash results - with sourmash
-AAFTF rmdup Remove duplicate contigs - using minimap2 to find duplicates
-AAFTF pilon Polish contig sequences with Pilon - uses Pilon
-AAFTF sort  Sort contigs by length and rename FASTA headers
-AAFTF assess  Assess completeness of genome assembly
-AAFTF pipeline  Run AAFTF pipeline all in one go.
+- AAFTF trim  Trim FASTQ input reads - with BBMap
+- AAFTF filter  Filter contaminanting reads - with BBMap
+- AAFTF assemble  Assemble reads - with SPAdes
+- AAFTF vecscreen Vector and Contaminant Screening of assembled contigs - with BlastN based method to replicate NCBI screening
+- AAFTF sourpurge Purge contigs based on sourmash results - with sourmash
+- AAFTF rmdup Remove duplicate contigs - using minimap2 to find duplicates
+- AAFTF pilon Polish contig sequences with Pilon - uses Pilon
+- AAFTF sort  Sort contigs by length and rename FASTA headers
+- AAFTF assess  Assess completeness of genome assembly
+- AAFTF pipeline  Run AAFTF pipeline all in one go.
  
 
 This is one script that I have been using that is the latest iteration of it. 
@@ -103,6 +121,7 @@ If you did not copy the pipeline folder from another directory- copy and paste t
 ---------
 Script begins
 ---------
+```bash
 #!/usr/bin/bash
 #SBATCH -N 1 -n 8 --mem 64gb --time 72:00:00 --out logs/AAFTF_new.%a.log
 #above configurations are important for slurm. We're telling how much power and memory to use. How long to run (72 hours) and where to save the progress report (logs).
@@ -213,18 +232,18 @@ do
 	AAFTF assess -i $SORTED -r $STATS
     fi
 done
-
-
-...
-
+```
 
 ...
+
+
 Stop once you get to done and paste into your empty text file. 
 
 To run this script make sure you are in your main directory you are working from.
 
 What's does that look like now?
 
+```
 ls -l 
 Should look like:
 ..augustus/
@@ -232,17 +251,19 @@ Should look like:
 ..logs/
 ..pipeline/
 ..samples.csv
+```
 
 You should see the above files. If you don't- Make sure you cd yourself here.
 Now to run do:
 
-sbatch --array=1-(what was the total lines when you ran wc -l samples.csv?) pipeline/01_AAFTF.sh (Hit ENTER)
+`sbatch --array=1-(what was the total lines when you ran wc -l samples.csv?) pipeline/01_AAFTF.sh` (Hit ENTER)
 
-sbatch --array=1-25 pipeline/01_AAFTF.sh
+An actual example:
+`sbatch --array=1-25 pipeline/01_AAFTF.sh`
 
 Running your script through an array allows multiple iterations of different data all at the same time. 
 
-Check if your script is running ok with squeue -u $YOURUSERNAME
+Check if your script is running ok with `squeue -u $YOURUSERNAME`
 
 ..
 
