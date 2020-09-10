@@ -1,6 +1,6 @@
-Jbrowser SOP
+JBrowse SOP
 
-Written by: Tania Kurbessoian
+Written by: Tania Kurbessoian [@tania-k](https://github.com/tania-k)
 
 
 You created all these BAM and vcf files but now you want to visualize them onto a browser. The Jbrowse option I would say is easy and really customizable to what you want to visualize.
@@ -8,14 +8,16 @@ You created all these BAM and vcf files but now you want to visualize them onto 
 Let’s start with [their website](https://jbrowse.org)
 They have a really good documentation tab that goes into depth about how to install and add in features. Their FAQ section is also incredibly helpful. 
 I git cloned this into my bigdata/ folder.  (20 seconds)
-```git clone https://github.com/gmod/jbrowse```
+```
+git clone https://github.com/gmod/jbrowse
+```
 
 Initially I had this jbrowse folder in my home/.html/ directory but because the home directory is limited in space I did a sym link. The jbrowse folder is located in my bigdata/ folder. Then from home I did
 ```
 cd  ~/.html/ 
 ln -s ~/bigdata/jbrowse # this way I have more space to play with.
 cd jbrowse 
-git checkout 1.16.9-release # In the jbrowse folder checkout the code
+git checkout 1.16.9-release # In the jbrowse folder checkout the specific release, later you can update this with a git pull and git checkout NEW-RELEASE
 ```
 Now set the environment up with - 
 ```
