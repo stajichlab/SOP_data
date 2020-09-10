@@ -191,4 +191,5 @@ Now refresh your page and your browser should appear!
 If you would like to view my working browser go back to my html page with the different folders. Click on the `jbrowse` link to view my genome browser for Exophiala dermatitidis. 
 
 Good luck!
+
 -T
