@@ -1,4 +1,5 @@
 JBrowse SOP
+=====
 
 Written by: Tania Kurbessoian [@tania-k](https://github.com/tania-k)
 
