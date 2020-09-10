@@ -2,27 +2,29 @@ JBrowse SOP
 
 Written by: Tania Kurbessoian [@tania-k](https://github.com/tania-k)
 
+To visualize genome annotation combined with Epigenomic, Transcriptomic, or Variant data you you want to visualize them onto a genome browser.  [JBrowse](https://jbrowse.org) provides an easy to setup tool for this visuzalition.
 
-You created all these BAM and vcf files but now you want to visualize them onto a browser. The Jbrowse option I would say is easy and really customizable to what you want to visualize.
+There is substantial [documentation](https://jbrowse.org/docs/installation.html) that describes installation and add-on features. The [FAQ](https://jbrowse.org/docs/faq.html) is also incredibly helpful. 
 
-Let’s start with [their website](https://jbrowse.org)
-They have a really good documentation tab that goes into depth about how to install and add in features. Their FAQ section is also incredibly helpful. 
-I git cloned this into my bigdata/ folder.  (20 seconds)
+Setting up your own copy of Jbrowse software.
+
+Use [git](https://git-scm.com/) to clone a copy of the software into my `~/bigdata/` folder.  (20 seconds)
 ```
+cd ~/bigdata
 git clone https://github.com/gmod/jbrowse
 ```
 
-Initially I had this jbrowse folder in my home/.html/ directory but because the home directory is limited in space I did a sym link. The jbrowse folder is located in my bigdata/ folder. Then from home I did
+Initially I had this jbrowse folder in my `~/.html/` directory but because on [HPCC](https://hpcc.ucr.edu) home directory is limited in space I make symlink to the data folder in bigdata. So jbrowse folder is located in my `~/bigdata/` folder. Then from home I did the following to create the symlink.
 ```
 cd  ~/.html/ 
 ln -s ~/bigdata/jbrowse # this way I have more space to play with.
 cd jbrowse 
 git checkout 1.16.9-release # In the jbrowse folder checkout the specific release, later you can update this with a git pull and git checkout NEW-RELEASE
 ```
-Now set the environment up with - 
-```
-conda activate nodejs
-```
+
+Setup a conda environment
+====
+
 If you don’t have this conda environment up yet, make sure to set it up with:
 First create the environment
 Using:
@@ -30,17 +32,20 @@ Using:
 conda create -n nodejs # create a new environment NOTE TO UPDATE THIS CAN ALSO LIST THE PACKAGES TO INSTALL
 source activate nodejs # Then activate the newly created environment.
 ```
-Install it from the bioconda.
+
+Install it from the bioconda. **TANIA NEED YOU TO SPECIFY THE PACKAGES YOU INSTALL IN THIS ENVIRONMENT**
 ```conda install -c bioconda (XXX)```
  
-Now run (this will take 10 minutes to run):
-```./setup.sh ```
+Now run the Jbrowse setup (this will take 10 minutes to run):
+```
+cd ~/.html/jbrowse
+./setup.sh 
+```
 
-Open up your cluster page and see if it worked.
-Here is my [cluster page - https://cluster.hpcc.ucr.edu/~tkurb001/](https://cluster.hpcc.ucr.edu/~tkurb001/)
+Check and see if the site has loaded on the HPCC hosted website. Here is my [cluster page - https://cluster.hpcc.ucr.edu/~tkurb001/](https://cluster.hpcc.ucr.edu/~tkurb001/)
 
-		
-Click on jbrowse2 to take you to the newly create page. 
+Click on jbrowse2 to take you to the newly create page.  **TANIA THIS NEEDS TO BE CLARIFIED- YOU HAVE 2 JBROWSE INSTALLS - I THINK WE NEED TO UNIFIY THESE EXAMPLES**
+
 This will take a couple of seconds. It will say "Loading..." 
 Once done it should say,   "Congratulations! Jbrowse is now on the web!"
 
