@@ -15,7 +15,6 @@ Use [git](https://git-scm.com/) to clone a copy of the software into `~/bigdata/
 cd ~/bigdata
 git clone https://github.com/gmod/jbrowse
 ```
-
 Initially I had this jbrowse folder in my `~/.html/` directory but because on [HPCC](https://hpcc.ucr.edu) home directory is limited in space I made a symlink to the data folder in bigdata. So jbrowse folder is located in my `~/bigdata/` folder. Then from home I did the following to create the symlink.
 ```
 cd  ~/.html/ 
@@ -42,8 +41,11 @@ Now run the Jbrowse setup (this will take 10 minutes to run):
 cd ~/.html/jbrowse
 ./setup.sh 
 ```
+Running a quick ls -l on your path should show you this.
+![](../img/Jbrowse_Homescreen.png)
 
 Check and see if the site has loaded on the HPCC hosted website. Here is my [cluster page - https://cluster.hpcc.ucr.edu/~tkurb001/](https://cluster.hpcc.ucr.edu/~tkurb001/)
+![](../img/Tania_HPCC.png)
 
 Click on jbrowse2 to take you to the newly create page. This is my example run, on your own page it will just be jbrowse.  
 
@@ -182,3 +184,8 @@ tabix -p vcf my_file.vcf.gz
 
 I recommend you `chmod 755 data/` folder and also all the files that exist in the `data/` file (`chmod a+r data/*`)
 Now refresh your page and your browser should appear!
+
+If you would like to view my working browser go back to my html page with the different folders. Click on the `jbrowse` link to view my genome browser for Exophiala dermatitidis. 
+
+Good luck!
+-T
