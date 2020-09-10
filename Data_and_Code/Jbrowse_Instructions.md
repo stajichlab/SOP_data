@@ -71,7 +71,8 @@ Tracks.conf - text file
 
 Personally I just worked through the text file and not the json file because I wasn’t too familiar with the html structure. 
 You can literally just edit the text file through nano.
-#Add Reference Fasta File into your Browser
+Add Reference Fasta File into your Browser
+====
 Now that you have your reference file and it’s indexed add this to your tracks.conf file. Replace my sequence names with yours. 
 ```
 [GENERAL]
@@ -83,7 +84,8 @@ storeClass=JBrowse/Store/SeqFeature/IndexedFasta
 type=Sequence
 ```
 
-#Add GFF3 file into your Browser
+Add GFF3 file into your Browser
+====
 You can also add in a gff3 file, it’s the same as your annotated reference though, especially when you add it to your browser, but this is how you do it. Add this to tracks.conf file
 ```
 [tracks.genes]
@@ -92,7 +94,8 @@ storeClass=JBrowse/Store/SeqFeature/GFF3Tabix
 type=CanvasFeatures
 ```
 
-#Add BAM files into your Browser
+Add BAM files into your Browser
+====
 Let’s add in your BAM files. Again just symlink your BAM files from wherever they are into the data file. Unfortunately the cluster disallows the BAM files to appear on the browser due to a feature. A way to deactivate that is:
 
 In your data file you should create the file `.htaccess.` 
@@ -139,7 +142,8 @@ metadata.Description = BAM-format alignments of simulated resequencing reads on 
 type = JBrowse/View/Track/Alignments2
 renderAlignment = true
 ```
-
+Add VCF files into your Browser
+====
 Follow the suggestions for your files, adjust the names and you’re good to go.
 Now if you want to add vcf files, again symlink them into your data file. And add this to your tracks.conf file. 
 ```
@@ -164,7 +168,7 @@ key = VCF - SNPs
 
 I’ve added a track for both SNPs and INDELs. If you’ve run Jason’s full GATK pipeline you’ll get these two files from snpEff. I’ve added the bgzip compressed files `Exophiala.Run1.selected.INDEL.vcf.gz` and `Exophiala.Run1.selected.SNP.vcf.gz`.
 
-If you have `.vcf` files that are not compressed you can compress them with
+If you have `.vcf` files that are not compressed you can compress them with:
 ```
 module load bcftools
 bgzip FILE.vcf
