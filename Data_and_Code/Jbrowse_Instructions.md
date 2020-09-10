@@ -161,5 +161,5 @@ module load bcftools
 tabix -p vcf my_file.vcf.gz
 ```
 
-I recommend you chmod 755 your data/ folder and all the files that exist in the data/ file. 
+I recommend you `chmod 755 data` folder and also all the files that exist in the data/ file (`chmod a+r data/*`)
 Now refresh your page and your browser should appear!
