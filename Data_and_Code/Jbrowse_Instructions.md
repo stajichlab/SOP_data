@@ -74,8 +74,10 @@ Tracks.conf - text file
 
 Personally I just worked through the text file and not the json file because I wasn’t too familiar with the html structure. 
 You can literally just edit the text file through nano.
+
 Add Reference Fasta File into your Browser
 ====
+
 Now that you have your reference file and it’s indexed add this to your tracks.conf file. Replace my sequence names with yours. 
 ```
 [GENERAL]
