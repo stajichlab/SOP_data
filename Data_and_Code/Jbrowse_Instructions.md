@@ -5,52 +5,67 @@ Written by: Tania Kurbessoian
 
 You created all these BAM and vcf files but now you want to visualize them onto a browser. The Jbrowse option I would say is easy and really customizable to what you want to visualize.
 
-Let’s start with their website.   https://jbrowse.org
+Let’s start with [their website](https://jbrowse.org)
 They have a really good documentation tab that goes into depth about how to install and add in features. Their FAQ section is also incredibly helpful. 
 I git cloned this into my bigdata/ folder.  (20 seconds)
-git clone https://github.com/gmod/jbrowse 
+```git clone https://github.com/gmod/jbrowse```
 
-
-
-Initially I had this jbrowse folder in my home/.html/ directory but because the home directory is limited in space I did a sym link. The jbrowse folder is located in my bigdata/ folder. Then from home I: 
-cd into .html/ then ln -s ../bigdata/jbrowse  this way I have more space to play with.
-As you are in the jbrowse folder run 
-git checkout 1.16.9-release
+Initially I had this jbrowse folder in my home/.html/ directory but because the home directory is limited in space I did a sym link. The jbrowse folder is located in my bigdata/ folder. Then from home I did
+```
+cd  ~/.html/ 
+ln -s ~/bigdata/jbrowse # this way I have more space to play with.
+cd jbrowse 
+git checkout 1.16.9-release # In the jbrowse folder checkout the code
+```
 Now set the environment up with - 
-Conda activate nodejs 
+```
+conda activate nodejs
+```
 If you don’t have this conda environment up yet, make sure to set it up with:
 First create the environment
 Using:
-Conda create -n (XXX)
-
-Then activate the newly created environment.
-Source activate (XXX)
-
+```
+conda create -n nodejs # create a new environment NOTE TO UPDATE THIS CAN ALSO LIST THE PACKAGES TO INSTALL
+source activate nodejs # Then activate the newly created environment.
+```
 Install it from the bioconda.
-Conda install -c bioconda (XXX)
+```conda install -c bioconda (XXX)```
  
-Now run 
-            ./setup.sh (this will take 10 minutes to run)
+Now run (this will take 10 minutes to run):
+```./setup.sh ```
 
 Open up your cluster page and see if it worked.
-
-Here is my cluster page. https://cluster.hpcc.ucr.edu/~tkurb001/ 
+Here is my [cluster page - https://cluster.hpcc.ucr.edu/~tkurb001/](https://cluster.hpcc.ucr.edu/~tkurb001/)
 
 		
-Click on jbrowse2 to take you to the newly made page. 
-            This will take a couple of seconds. It will say “Loading…” But once done it should say,   “Congratulations! Jbrowse is now on the web!”
+Click on jbrowse2 to take you to the newly create page. 
+This will take a couple of seconds. It will say "Loading..." 
+Once done it should say,   "Congratulations! Jbrowse is now on the web!"
+
 Though you have no data loaded in so it’ll give you an error. You can look at the volvox dataset they have preinstalled. 
 But now you can start setting up your own browser!
+
 Now let’s set up the browser!
-mkdir data/ this is where all your files will live.
-Sym link your annotated fasta file into your data folder.
-Module load samtools
-samtools faidx your_fasta_file.fasta to create your indexed fasta file.
+====
+
+```
+mkdir data # this is where all your files will live.
+cd data 
+ln -s /folder/to/your/genome.fasta # Sym link your annotated fasta file into your data folder.
+module load samtools
+samtools faidx genome.fasta # to create your indexed fasta file.
+```
 Now in order to have this appear on your browser you need to edit a file. Jbrowse gives you two options to edit an html file or just a text configuration file. 
+```
 trackList.json - html file
 Tracks.conf - text file
-Personally I just worked through the text file and not the json file because I wasn’t too familiar with html. You can literally just edit the text file through nano.
+```
+
+Personally I just worked through the text file and not the json file because I wasn’t too familiar with the structure. 
+You can literally just edit the text file through nano.
 Now that you have your reference file and it’s indexed add this to your tracks.conf file. Replace my sequence names with yours. 
+
+```
 [GENERAL]
 refSeqs=Exophiala_dermatitidis_Ex4.fa.fai
 
@@ -77,8 +92,10 @@ It may be created on its own or you may have to create one yourself. If not add 
     Header onsuccess set Access-Control-Allow-Headers X-Requested-With,Range
     Header onsuccess set Access-Control-Expose-Headers Content-Length,Content-Range
 </IfModule>
+```
 
 In order to get the bam files to appear on your browser add this to tracks.conf file.
+```
 [ tracks . EX1_bam ]
 style.height = 7
 key = BAM - Ex1-sorted.bam
@@ -89,8 +106,11 @@ metadata.category = BAM
 metadata.Description = BAM-format alignments of simulated resequencing reads on Ex1
 type = JBrowse/View/Track/Alignments2
 renderAlignment = true
+```
 
 If you have more than one file they should look like this
+
+```
 [ tracks . EX2_bam ]
 style.height = 7
 key = BAM - Ex2-sorted.bam
@@ -101,9 +121,12 @@ metadata.category = BAM
 metadata.Description = BAM-format alignments of simulated resequencing reads on Ex2                            
 type = JBrowse/View/Track/Alignments2
 renderAlignment = true
+```
 
 Follow the suggestions for your files, adjust the names and you’re good to go.
 Now if you want to add vcf files, again sym link them into your data file. And add this to your tracks.conf file. 
+
+```
 [tracks. INDEL_VCF]
 style.height = 7
 storeClass=JBrowse/Store/SeqFeature/VCFTabix
@@ -121,10 +144,20 @@ maxFeatureScreenDensity	= 4
 metadata.category = VCF
 type = JBrowse/View/Track/CanvasVariants
 key = VCF - SNPs
+```
 
-I’ve added a track for both SNPs and INDELs. If you’ve run Jason’s full GATK pipeline you’ll get these two files from snpEff. I’ve added the gz file Exophiala.Run1.selected.INDEL.vcf.gz
-And Exophiala.Run1.selected.SNP.vcf.gz. You should also index these files using:
+I’ve added a track for both SNPs and INDELs. If you’ve run Jason’s full GATK pipeline you’ll get these two files from snpEff. I’ve added the bgzip compressed files `Exophiala.Run1.selected.INDEL.vcf.gz` and `Exophiala.Run1.selected.SNP.vcf.gz`.
+
+If you have `.vcf` files that are not compressed you can compress them with
+```
+module load bcftools
+bgzip FILE.vcf
+```
+ You should also index these files using:
+```
+module load bcftools
 tabix -p vcf my_file.vcf.gz
+```
 
-I recommend you chmod 777 your data/ folder and all the files that exist in the data/ file. 
+I recommend you chmod 755 your data/ folder and all the files that exist in the data/ file. 
 Now refresh your page and your browser should appear!
