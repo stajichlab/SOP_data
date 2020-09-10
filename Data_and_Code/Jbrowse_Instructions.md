@@ -1,4 +1,4 @@
-JBrowse SOP
+JBrowse - Genome Browser
 =====
 
 Written by: Tania Kurbessoian [@tania-k](https://github.com/tania-k)
