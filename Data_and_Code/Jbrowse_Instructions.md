@@ -16,7 +16,7 @@ cd ~/bigdata
 git clone https://github.com/gmod/jbrowse
 ```
 
-Initially I had this jbrowse folder in my `~/.html/` directory but because on [HPCC](https://hpcc.ucr.edu) home directory is limited in space I make symlink to the data folder in bigdata. So jbrowse folder is located in my `~/bigdata/` folder. Then from home I did the following to create the symlink.
+Initially I had this jbrowse folder in my `~/.html/` directory but because on [HPCC](https://hpcc.ucr.edu) home directory is limited in space I made a symlink to the data folder in bigdata. So jbrowse folder is located in my `~/bigdata/` folder. Then from home I did the following to create the symlink.
 ```
 cd  ~/.html/ 
 ln -s ~/bigdata/jbrowse # this way I have more space to play with.
