@@ -28,10 +28,9 @@ Setup a conda environment
 ====
 
 If you don’t have this conda environment up yet, make sure to set it up with:
-First create the environment
-Using:
+First create the environment-
 ```
-conda create -n nodejs # create a new environment NOTE TO UPDATE THIS CAN ALSO LIST THE PACKAGES TO INSTALL
+conda create -n nodejs # create a new environment 
 source activate nodejs # Then activate the newly created environment.
 ```
 
@@ -110,6 +109,7 @@ nano .htaccess
 # to this, it must have mod_headers enabled, and its AllowOverride
 # configuration directive must allow FileInfo overrides.
 <IfModule mod_headers.c>
+    AddType application/octet-stream .bam .bami .bai
     Header onsuccess set Access-Control-Allow-Origin *
     Header onsuccess set Access-Control-Allow-Headers X-Requested-With,Range
     Header onsuccess set Access-Control-Expose-Headers Content-Length,Content-Range
