@@ -42,6 +42,7 @@ cd ~/.html/jbrowse
 ./setup.sh 
 ```
 Running a quick ls -l on your path should show you this.
+
 ![](../img/Jbrowse_Homescreen.png)
 
 Check and see if the site has loaded on the HPCC hosted website. Here is my [cluster page - https://cluster.hpcc.ucr.edu/~tkurb001/](https://cluster.hpcc.ucr.edu/~tkurb001/)
