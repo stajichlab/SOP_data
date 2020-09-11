@@ -23,9 +23,10 @@ cd jbrowse
 git checkout 1.16.9-release # In the jbrowse folder checkout the specific release, later you can update this with a git pull and git checkout NEW-RELEASE
 ```
 
-Setup a conda environment
+Setup "nodejs" conda environment
 ====
 
+Basically configurations and packages to set up javascript environments.
 If you don’t have this conda environment up yet, make sure to set it up with:
 First create the environment-
 ```
@@ -33,9 +34,13 @@ conda create -n nodejs # create a new environment
 source activate nodejs # Then activate the newly created environment.
 ```
 
-Install it from the bioconda.
+Install it from the bioconda or this case conda-forge.
 ```conda install -c conda-forge nodejs```
- 
+
+Load in python too
+```
+module load miniconda3
+```
 Now run the Jbrowse setup (this will take 10 minutes to run):
 ```
 cd ~/.html/jbrowse
@@ -48,7 +53,7 @@ Running a quick ls -l on your path should show you this.
 Check and see if the site has loaded on the HPCC hosted website. Here is my [cluster page - https://cluster.hpcc.ucr.edu/~tkurb001/](https://cluster.hpcc.ucr.edu/~tkurb001/)
 ![](../img/Tania_HPCC.png)
 
-Click on jbrowse2 to take you to the newly create page. This is my example run, on your own page it will just be jbrowse.  
+Click on jbrowse2 to take you to the created page. This is my example run, your html link should be https://cluster.hpcc.ucr.edu/~YOURUSERNAME/ 
 
 This will take a couple of seconds. It will say "Loading..." 
 Once done it should say,   "Congratulations! Jbrowse is now on the web!"
@@ -69,11 +74,11 @@ samtools faidx genome.fasta # to create your indexed fasta file.
 Now in order to have this appear on your browser you need to edit a file. Jbrowse gives you two options to edit an html file or just a text configuration file. 
 ```
 trackList.json - html file
-Tracks.conf - text file
+tracks.conf - text file
 ```
 
-Personally I just worked through the text file and not the json file because I wasn’t too familiar with the html structure. 
-You can literally just edit the text file through nano.
+I just worked through the text file and not the json file because I wasn’t too familiar with the html structure. 
+You can edit the text file through nano.
 
 Add Reference Fasta File into your Browser
 ====
@@ -91,7 +96,7 @@ type=Sequence
 
 Add GFF3 file into your Browser
 ====
-You can also add in a gff3 file, it’s the same as your annotated reference though, especially when you add it to your browser, but this is how you do it. Add this to tracks.conf file
+You can also add in a gff3 file. Add this to tracks.conf file
 ```
 [tracks.genes]
 urlTemplate=Exophiala_dermatitidis_Ex4.sorted.gff3.gz
