@@ -28,19 +28,27 @@ Setup "nodejs" conda environment
 
 Basically configurations and packages to set up javascript environments.
 If you don’t have this conda environment up yet, make sure to set it up with:
-First create the environment-
+First create the environment- since you are creating this in your own folder it will create an environment in `~/.conda`. But since we have limited space in the Home directory it is useful to do the following to move or create a .conda in bugdata.
+
+If no `~/.conda` exists then
 ```
-conda create -n nodejs # create a new environment 
+cd ~
+mkdir ~/bigdata/conda
+ln -s ~/bigdata/conda .conda
+```
+If `~/.conda` already exists but isn't a symlink into ~/bigdata then
+```
+mv ~/.conda ~/bigdata/conda
+ln -s ~/bigdata/conda ~/.conda
+```
+
+Now create the nodejs conda environment.
+```
+module load miniconda3
+conda create -n nodejs -c conda-forge -c bioconda nodejs # create a new environment 
 source activate nodejs # Then activate the newly created environment.
 ```
 
-Install it from the bioconda or this case conda-forge.
-```conda install -c conda-forge nodejs```
-
-Load in python too
-```
-module load miniconda3
-```
 Now run the Jbrowse setup (this will take 10 minutes to run):
 ```
 cd ~/.html/jbrowse
