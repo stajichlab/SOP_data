@@ -7,6 +7,19 @@ To visualize genome annotation combined with Epigenomic, Transcriptomic, or Vari
 
 There is substantial [documentation](https://jbrowse.org/docs/installation.html) that describes installation and add-on features. The [FAQ](https://jbrowse.org/docs/faq.html) is also incredibly helpful. 
 
+Configure your HPCC account to be able to share via HTTP / Web
+====
+Follow the [directions on the HPCC manual](http://hpcc.ucr.edu/manuals_linux-cluster_sharing.html#sharing-files-on-the-web) so that you can configure your home folder `~/.html` to be able to serve up data. If you do not want to make everything in this folder public you can use some simple strategies to enable a password protected space by [creating a `.htaccess`](http://hpcc.ucr.edu/manuals_linux-cluster_sharing.html#password-protect-web-pages) file or you can use a web form of security - security through obscurity.
+
+```
+mkdir ~/.html/private
+chmod 711 ~/.html/private
+mkdir ~/.html/private/MYSECRETPROJECT
+# install jbrowse or data or others in ~/.html/private/MYSEKR1TPROJECT
+```
+On the web a user browsing will not have permission to see `https://cluster.hpcc.ucr.edu/~YOURUSERNAME/private` but the URL `https://cluster.hpcc.ucr.edu/~YOURUSERNAME/private/MYSEKR1TPROJECT` will be visible.  This is called security by obscurity, if you generate a long random string instead of `MYSEKR1TPROJECT` it would be hard to guess it (though note this not really secure since anyone reading network traffic and see the string would now know the the URL to go to). Generally if you want to protect the data, setup a `.htaccess/.htpasswd` to require logging in.
+
+
 Setting up your own copy of Jbrowse software.
 ====
 
