@@ -45,7 +45,7 @@ ln -s ~/bigdata/conda ~/.conda
 Now create the nodejs conda environment.
 ```
 module load miniconda3
-conda create -n nodejs -c conda-forge -c bioconda nodejs # create a new environment 
+conda create -n nodejs -c conda-forge -c bioconda perl=5.22 libgd nodejs # create a new environment; install perl, libgdb, nodejs conda packages
 source activate nodejs # Then activate the newly created environment.
 ```
 
