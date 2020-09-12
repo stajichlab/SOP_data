@@ -83,6 +83,19 @@ Once done it should say,   "Congratulations! Jbrowse is now on the web!"
 Though you have no data loaded in so it’ll give you an error. You can look at the volvox dataset they have preinstalled. 
 But now you can start setting up your own browser!
 
+Alternative Conda only install
+=====
+```
+conda create --prefix ~/bigdata/jbrowse_MYFAV_GENOME -c bioconda -c conda-forge jbrowse
+mkdir -p ~/.html/private/MYFAV_GENOME
+chmod 711 ~/.html/private
+cd ~/.html/private/MYFAV_GENOME
+git clone https://github.com/gmod/jbrowse
+cd jbrowse
+mv bin bin-jbrowse-git
+ln -s ~/bigdata/jbrowse_MYFAV_GENOME/* . # warnings about doc folder already existing is okay
+```
+
 Now let’s set up the browser!
 ====
 
