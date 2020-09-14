@@ -17,7 +17,6 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
 * [Fungal Genome_Assembly_with_Illumina_Reads](Genome_Assembly_with_Illumina_Reads)
 * [Fungal Genome annotation](Fungal_Genome_annotation)
 
-
 ## Amplicon Analysis
 
 * [UCR HPCC AMPtk amplicon (microbiome) analysis](AMPtk)
@@ -31,3 +30,15 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
   * Data cleaning
   * Metagenome Assembly
   * Metagenome annotation and Analysis
+
+## Phylogenomics
+
+* [PHYling phylogenomics](Phylogenomics_with_PHYling)
+
+## Transcriptome
+
+* [Trinity RNA-seq Assembly](Trinity_RNASeq)
+
+## Vizualization
+
+* [JBrowse](Jbrowse_Instructions)
