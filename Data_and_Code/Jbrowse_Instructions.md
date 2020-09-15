@@ -82,7 +82,7 @@ Now create the nodejs conda environment.
 ```
 module load miniconda3
 # create a new environment; install perl, libgdb, nodejs conda packages
-conda create -n nodejs -c conda-forge -c bioconda libgd nodejs npm
+conda create -n nodejs -c conda-forge -c bioconda libgd nodejs
 source activate nodejs # Then activate the newly created environment.
 ```
 
