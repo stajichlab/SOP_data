@@ -39,6 +39,8 @@ Alternatively to use FTP you can use ftp client.
 lftp subftp@ftp-private.ncbi.nlm.nih.gov
 password: <put in your password>
 > cd uploads/UNIQUE_PATH_FROM_NCBI_PAGE
+> mkdir PRJYYY
+> cd PRJYY
 > mput *.fastq.gz
 ```
 
