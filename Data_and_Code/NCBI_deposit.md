@@ -71,6 +71,8 @@ It is more typical to upload RNAseq data through the [Gene Expression Ombnibus](
 
 Raw assemblies.
 
+Depth of coverage of a genome calculated from total read amount and genome assembly size (bbcount links?)
+
 ## Annotated genomes
 
 For Bacteria there is a simple way to get these annotations and genome deposited in one go. Simply use the [PGAP](https://www.ncbi.nlm.nih.gov/genome/annotation_prok/) procedure.  The Genome submission portal is still used for uploading but then an option to annotate
