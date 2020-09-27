@@ -26,23 +26,22 @@ mkdir ~/.html/private/MYSECRETPROJECT
 ```
 On the web a user browsing will not have permission to see `https://cluster.hpcc.ucr.edu/~YOURUSERNAME/private` but the URL `https://cluster.hpcc.ucr.edu/~YOURUSERNAME/private/MYSEKR1TPROJECT` will be visible.  This is called security by obscurity, if you generate a long random string instead of `MYSEKR1TPROJECT` it would be hard to guess it (though note this not really secure since anyone reading network traffic and see the string would now know the the URL to go to). Generally if you want to protect the data, setup a `.htaccess/.htpasswd` to require logging in.
 
-## Setting up your own copy of JBrowse software from scratch 
-
-(some of this was not working well unless you add `module load python` which is really just loading other hpcc modules.)
+## Setting up your own copy of JBrowse software
 
 Use [git](https://git-scm.com/) to clone a copy of the software into `~/bigdata/` folder.  (20 seconds)
 ```
 cd ~/bigdata
 git clone https://github.com/gmod/jbrowse
+cd jbrowse
+git checkout 1.16.9-release
 ```
 
 ## Using already setup JBrowse environment
 
-There are several ways to install JBrowse - it could be you are running this on your own laptop/server or other location. The next directions are specific to the UCR HPCC.
-These instructions use an already build conda environment which you can link to:
+There are several ways to install JBrowse - it could be you are running this on your own laptop/server or other location. 
 
+The next directions are specific to the UCR HPCC. These instructions use an already build conda environment which you can link to:
 ```
-
 cd ~/.html/private
 ln -s ~/bigdata/jbrowse
 cd jbrowse
@@ -52,15 +51,17 @@ JBROWSE_PATH=$(dirname `which biodb-to-json.pl`)
 ln -s $JBROWSE_PATH ./
 ```
 
-Initially I had this jbrowse folder in my `~/.html/` directory but because on [HPCC](https://hpcc.ucr.edu) home directory is limited in space I made a symlink to the data folder in bigdata. So jbrowse folder is located in my `~/bigdata/` folder. Then from home I did the following to create the symlink.
-```
-cd  ~/.html/ 
-ln -s ~/bigdata/jbrowse # this way I have more space to play with.
-cd jbrowse 
-git checkout 1.16.9-release # In the jbrowse folder checkout the specific release, later you can update this with a git pull and git checkout NEW-RELEASE
-```
+If you are going to support multiple JBrowse environments you only need to have a custom data folder. So you can symlink to all the files within the jbrowse checkout and then make a separate data folder too. Otherwise you need to make sure you have a separate custom jbrowse checkout for each project you are supporting.
 
-## Alternatively - setup "nodejs" conda environment
+Jbrowse can support multiple species in the same browser environment through customization within the data folder too.
+
+
+
+# Alternatively - setup "nodejs" conda environment
+
+_Only do this if the above does not work for you.__
+
+(some of this was not working well unless you add `module load python` which is really just loading other hpcc modules.)
 
 Basically configurations and packages to set up javascript environments.
 If you don’t have this conda environment up yet, make sure to set it up with:
