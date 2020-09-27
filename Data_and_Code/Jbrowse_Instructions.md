@@ -42,13 +42,18 @@ There are several ways to install JBrowse - it could be you are running this on 
 
 The next directions are specific to the UCR HPCC. These instructions use an already build conda environment which you can link to:
 ```
+# startup an interactive job on the cluster
+srun -p short -N 1 -n 4 --mem 16gb --pty bash -l
 cd ~/.html/private
 ln -s ~/bigdata/jbrowse
 cd jbrowse
+# this will replace the jbrowse bin with the one installed already in the jbrowse env
 mv bin bin-jbrowse-git
 module load jbrowse
 JBROWSE_PATH=$(dirname `which biodb-to-json.pl`)
 ln -s $JBROWSE_PATH ./
+# now run the setup script - this will take 30mins or less usually if you are running on a node
+./setup.sh
 ```
 
 If you are going to support multiple JBrowse environments you only need to have a custom data folder. So you can symlink to all the files within the jbrowse checkout and then make a separate data folder too. Otherwise you need to make sure you have a separate custom jbrowse checkout for each project you are supporting.
