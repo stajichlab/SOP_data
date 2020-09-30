@@ -6,9 +6,13 @@ Nearly all the info you need for running Trinity is on the website supported by 
 
 # Getting data ready for assembly
 
+The tutorial developed by [Running Trinity](https://github.com/trinityrnaseq/trinityrnaseq/wiki/Running-Trinity)
+
 ## FASTQ from sequencing center
 
 These data should work just fine out of the gate. Remembering there are some which will be paired end and some single end.
+
+Trinity expect data to 
 
 ## FASTQ from NCBI / SRA
 
@@ -20,6 +24,12 @@ One critical aspect is knowing if the data are strand specific and the organizat
 
 Several tools will help guess this, though generally this is only going to be guessable if you also have a genome to align the reads to.
 - [RSeQC](http://rseqc.sourceforge.net/) - RNA-seq Quality Control Package has a tool called [infer_experiment.py](http://rseqc.sourceforge.net/#infer-experiment-py)
+
+# Running Trinity Genome-Guided (GG) mode
+
+Read about [Genome Guided mode](https://github.com/trinityrnaseq/trinityrnaseq/wiki/Genome-Guided-Trinity-Transcriptome-Assembly) which improves accuracy of assembled transcripts by first aligning reads to a genome assembly and then building clusters of aligned reads. To run this you will need to have first aligned the reads to the genome
+
+The results of this run is a `Trinity-GG.fasta` file instead of `Trinity.fasta`
 
 # Running Trinity on HPCC
 
