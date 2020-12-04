@@ -21,7 +21,7 @@ cd ~/bigdata/
 mkdir -p AMPtk/illumina/
 cd AMPtk/illumina/
 # create a symlink to the datasets
-ln -s ~/shared/projects/Microbiome/data/Antarctica_Endolithic/ITS/illumina/*8* .
+ln -s ~/shared/projects/Microbiome/data/Amplicon_Pipeline/ITS/illumina/*8* .
 cd ..
 ```
 
