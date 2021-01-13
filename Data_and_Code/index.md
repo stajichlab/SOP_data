@@ -23,7 +23,11 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
 * 16S Bacteria and Archaea
 * ITS Fungal
 
-## Metagenome
+## Genome Assembly
+
+* [De Novo Assembly](Assembly)
+
+## Metagenome assembly and analysis
 
 * [KBase Metagenomes Analysis](KBase)
 * UCR HPCC Metagenomes Analysis
