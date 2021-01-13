@@ -16,16 +16,13 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
 
 * [Fungal Genome_Assembly_with_Illumina_Reads](Genome_Assembly_with_Illumina_Reads)
 * [Fungal Genome annotation](Fungal_Genome_annotation)
+* [Hybrid Assembly](Hybrid_genome_assembly)
 
 ## Amplicon Analysis
 
 * [UCR HPCC AMPtk amplicon (microbiome) analysis](AMPtk)
 * 16S Bacteria and Archaea
 * ITS Fungal
-
-## Genome Assembly
-
-* [De Novo Assembly](Assembly)
 
 ## Metagenome assembly and analysis
 

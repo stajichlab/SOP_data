@@ -1,21 +1,8 @@
-# Genome assembly
-
-# Illumina alone
-
-* SPADes
-* MaSuRCA
-
-# Long read Assemblers
-
-* Canu
-* Flye
-* Shasta
-
-## Hybrid Assemblers
+# Hybrid Genome Assemblers
 
 * MaSuRCA
 
-This generates the template config.txt
+This generates the masurca template file and names it `config.txt`
 ```
 module load masurca/3.4.2
 masurca -g config.txt
@@ -96,4 +83,9 @@ SOAP_ASSEMBLY=0
 #DO NOT use if you have less than 15x coverage by long reads.
 FLYE_ASSEMBLY=1
 END
+```
+Now run masurca to generate the run steps
+```
+masurca config.txt # will generate assemble.sh
+sbatch -p intel -n 24 -N 1 --mem 64gb assemble.sh # submit this as a job
 ```
