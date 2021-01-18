@@ -1,5 +1,10 @@
-For now see:
+# Fungal Genome Annotation
 
+In our lab we typically use [Funannotate](https://funannotate.readthedocs.io/) for annotation though [MAKER](https://yandell-lab.org/software/maker.html) is also another pipline that we support and have used in the past.
+
+_Additional tutorial material will be provided here in an update_
+
+For now see:
 https://github.com/stajichlab/funannotate_template
 
 
