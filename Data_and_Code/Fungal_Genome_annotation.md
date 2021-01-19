@@ -8,7 +8,7 @@ For now see:
 https://github.com/stajichlab/funannotate_template
 
 
-# Running Gene preiction Training
+# Running Gene prediction Training
 
 Using RNA-seq data Funannotate can improve the gene prediction parameters for SNAP and Augustus.
 
