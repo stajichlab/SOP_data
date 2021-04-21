@@ -60,7 +60,7 @@ Illumina data
 
 PacBio and Nanopore
 
-These are also similar to Illumina data deposition. Just FASTQ files can be desposited. However fast5 files are also
+These are also similar to Illumina data deposition. Just FASTQ files can be desposited. However fast5 files are also deposited for Nanopore results.
 
 
 ## Raw RNA and Epigenomic data deposition
@@ -69,9 +69,59 @@ It is more typical to upload RNAseq data through the [Gene Expression Ombnibus](
 
 # Genome deposition
 
-Raw assemblies.
+Genomes can be deposited as simply and assembly (FastA format) or an assembly with gene annotation (produced from a tool like funannotate). Annotated genomes in GenBank are usually deposited in the sequin format (`.sqn`). Typically a tool like funannotate will produce this already but it is generated from a simple annotation format called NCBI Table format (`.tbl`) and a genome assembly Fasta file. The `.tbl + .fsa` files are combined in a tool called `tbl2asn` which produces the `.sqn` file and does a bunch of checking for everything from frame shifts to ensuring gene/mRNA/exon features all overlap as expected in their ranges, and many more checks.
 
-Depth of coverage of a genome calculated from total read amount and genome assembly size (bbcount links?)
+The first page for genome submission is the [submit.ncbi.nih.gov](http://submit.ncbi.nih.gov).
+![NCBI submit Front](../img/ncbi_submit_genome_GWSS_1.png)
+
+You'll need to know how your assembly was constructed and what assembly tools and dates or version of the tools. You will also need to have already created a BioProject and BioSample for this genome. You should also plan to deposit the raw sequence reads in the SRA but you can do that after the genome is deposited.
+
+Depth of coverage of a genome calculated from total read amount and genome assembly size (bbcount or calculating this in mosdepth if you have a bam/cram file for your datasets aligned back to the genome).
+
+Here's an example of calculating depth of coverage
+```
+module load mospdeth
+mosdepth -x -n -t 16 remap_results Genome_remapped_reads.bam
+```
+and then run this R code to compute the mean depth of coverage. You can also add some additional filtering steps if you want to remove high coverage contigs from the average calculation, etc.
+
+```R
+library(dplyr)
+mosd <- read.csv("remap_results.mosdepth.summary.txt",sep="\t",header=T)
+
+mean(mosd$mean)
+summary(mosd)
+# remove high coverage for example using 100x as the cutoff in this example
+nohighcov <- r %>% filter(mean < 100)
+mean(nohighcov$mean)
+summary(nohighcov)
+
+```
+This will give you a readout of the average depth of coverage across the contigs/chromosomes so you can fill in a number for depth of coverage in the genome submission entry.
+
+Additional tools to calculate this include bbmap.sh
+```bash
+#SBATCH -p short -N 1 -n 48 --mem 64gb --out bbmap.log
+module load BBMap
+MEM=64
+bbmap.sh -Xmx${MEM}g ref=GENOME.fasta in=LEFTREADS.fastq.gz in2=RIGHTREADS.fastq.gz statsfile=remapped_reads.bbmap_summary.txt
+```
+
+Once you have an annotations
+
+### Uploading Genome data
+
+The one, or many if you have a large genome the .sqn file will be split up by funannotate, sqn file(s) need to be uploaded to NCBI via either FTP or aspera. Aspera commands as shown before include a key that comes with aspera command line tool install as well as a private folder name for your account on NCBI which you can reveal in the Aspera command line instructions section of the page.
+
+The upload step will look something like this on the UCR HPCC where *YOUREMAIL_SECRETFOLDER* will be what NCBI assigned to your account.
+
+```
+module load aspera
+ascp -i $ASPERAKEY -QT -l 300m -k1 -d ./*.sqn subasp@upload.ncbi.nlm.nih.gov:uploads/YOUREMAIL_SECRETFOLDER/A_UNIQUE_NAME_FOLDER/
+```
+You specify a folder name (`A_UNIQUE_NAME_FOLDER`) for a particular project upload.
+
+
 
 ## Annotated genomes
 
