@@ -137,15 +137,16 @@ Use the Transcriptome Sequence Archive (TSA). These will still require a minimum
 
 Instructions are [here](https://www.ncbi.nlm.nih.gov/genbank/wgsfaq/#metagen). First, create a BioProject and then create a Biosample for any host or environmental 'metagenome' samples of orgin (the "physical" biosamples) as decribed above. Next email genomes@ncbi.nlm.nih.gov with a list of proposed taxonomic names for each MAG at its lowest rank for NCBI to review. 
 
-Here are the MAG names I sent to NCBI for consideration:
-Wolbachia sp. 
-Candidatus Baumannia cicadellinicola  
-Candidatus Sulcia muelleri 
+> Here are the MAG names I sent to NCBI for consideration: 
+> * Wolbachia sp. 
+> * Candidatus Baumannia cicadellinicola  
+> * Candidatus Sulcia muelleri 
 
-They sent back:
-Wolbachia endosymbiont of Homalodisca vitripennis
-Candidatus Baumannia cicadellinicola
-Candidatus Sulcia muelleri
+
+> They sent back:
+> * Wolbachia endosymbiont of Homalodisca vitripennis
+> * Candidatus Baumannia cicadellinicola
+> * Candidatus Sulcia muelleri
 
 Use the NCBI provide names for MAGs to now create organism-specific biosamples. Pick either "MIMAG Metagenome-assembled Genome". Include the BioProject ID made earlier during submission. Any Bin IDs can be included as the isolate name. Finally add a custom attribute 'derived-from' and add 'This BioSample is a metagenomic assembly obtained from
 the host XXXXXXXXXX BioSample: SAMNXXXXX.' to connect the MAG back to the physical biosample(s). Finally, the MAGs can now be deposited via the WGS submision portal as genome assemblies (as described above) using BioProject ID and the organism-specific BioSample ID for the MAGs. For archaeal/bacterial MAGs, if they are unannotated, then you only need a fasta file to submit these to NCBI and you will be asked at end of submission if you want to use NCBI's in-house annotation tool for these, PGAP (as described above).
