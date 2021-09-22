@@ -34,7 +34,7 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
 
 ## Viral metagnomics
 * [KBase Viral Analysis](KBase_Viruses)
-* [UCR HPCC Cluster Viral Analysis](Cluster_Virsues)
+* [UCR HPCC Cluster Viral Analysis](Cluster_Viruses)
 
 ## Phylogenomics
 
