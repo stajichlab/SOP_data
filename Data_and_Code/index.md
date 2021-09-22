@@ -32,6 +32,10 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
   * Metagenome Assembly
   * Metagenome annotation and Analysis
 
+## Viral metagnomics
+* [KBase Viral Analysis](KBase_Viruses)
+* [UCR HPCC Cluster Viral Analysis](Cluster_Virsues)
+
 ## Phylogenomics
 
 * [PHYling phylogenomics](Phylogenomics_with_PHYling)
