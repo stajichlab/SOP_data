@@ -121,7 +121,46 @@ ascp -i $ASPERAKEY -QT -l 300m -k1 -d ./*.sqn subasp@upload.ncbi.nlm.nih.gov:upl
 ```
 You specify a folder name (`A_UNIQUE_NAME_FOLDER`) for a particular project upload.
 
+## When you get an error on your genome assembly upload
+As you attempt to submit assemblies of genomes into NCBI, you might get some errors about contamination. Even though the AAFTF pipeline has a vecscreen where contaminated contigs are screened out, there are still some that get left over. NCBI has really strict rules for this. 
 
+Once you submit the assemblies you will get some errors you need to "fix". Before submitting you will get the option to have NCBI clear out the contamination or you can not toggle this button, which will prompt you to clear out your own assemblies. 
+
+When prompted to fix your genomes, you may get a series of options. "Remaining Contamination" or "Contamination" text files. 
+Opening this file you'll see regions to "Trim" and regions to "Exclude".
+
+Here are some tips to get rid of each. 
+The scaffolds to exclude will require removing entire scaffolds.
+try:
+```
+module load BBMap
+filterbyname.sh in=original.fasta out=cleaned.fasta names=text_of_scaffold_names_only.txt exclude
+```
+Your output fasta file should have the scaffolds you've described in your text_of_scaffold_names_only.txt will be cleared. 
+A way to check this.
+
+Load conda environment for bioawk. 
+
+```
+bioawk -c fastx '{ print $name, length($seq) }' < cleaned.fasta
+```
+This will spit out all the scaffolds in your fasta file along with the length of each contigs.
+
+As for the trimmed option do:
+
+```
+bedtools maskfasta -mc X -fi cleaned.fasta -bed bed_file_or_just_text_with_scaffold_start_stop.txt -fo masked.fasta
+```
+Basically the bed file should contain just three tab lines. Scaffold, start, stop but in tab format. 
+This line replaces those regions with a series of X's.
+
+Next line:
+```
+sed 's/X//g' masked.fasta > final.fasta
+```
+This will replace the X's you've masked by removing them completely.
+
+Try resubmitting the genomes now and see if this cleared your issues.
 
 ## Annotated genomes
 
