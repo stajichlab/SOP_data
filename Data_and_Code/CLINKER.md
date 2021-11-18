@@ -18,6 +18,8 @@ A GBK file for each genome. Make sure the locus ID is the same in the FASTA file
 My question was looking into the MAT loci - specifically for the organism Exophiala dermatitidis. I found a paper indicating the genes and their fasta sequences.
 
 [Paper](https://www.sciencedirect.com/science/article/abs/pii/S1087184518303293)
+
+
 ![](../img/EDERM.jpg)
 
 This paper has the details I was looking for, and pulled out the fasta sequences for each of the genes found in the loci. 
@@ -209,6 +211,7 @@ clinker *.gbk -p plot.html
 ```
 
 ![](../img/plot_Sub.png)
+
 You will produce an html link. Download this and open on your internet browser of choice. 
 
 Good luck!
