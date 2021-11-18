@@ -5,13 +5,21 @@ I have the MAT loci example to show, but this can work for any loci you want to 
 Let's say you have a set of genomes and would like to observe the loci, is it missing genes in some? Is it even present in all genomes?
 
 What you need:
+
 Your genome set in amino acid sequences. *.proteins.fa*
+
 Cluster access
+
 module load ncbi-blast+
+
 module load clinker
+
 strains.csv
+
 A GFF3 file for each genome. Make sure the locus ID is the same in the FASTA file and the GFF3 file.
+
 A GBK file for each genome. Make sure the locus ID is the same in the FASTA file and the GBK file. 
+
 
 ## Find the closest evolutionary strain that has good publication history and has the loci studied and available on NCBI.
 
