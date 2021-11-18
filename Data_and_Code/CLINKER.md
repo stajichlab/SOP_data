@@ -15,9 +15,9 @@ A GBK file for each genome. Make sure the locus ID is the same in the FASTA file
 
 ## Find the closest evolutionary strain that has good publication history and has the loci studied and available on NCBI.
 
-My question was looking into the MAT loci - specifically for the organism Exophiala dermatitidis. I found a paper indicating the genes and their fasta sequences.
+My question was looking into the MAT loci - specifically for the organism Exophiala dermatitidis. I found a paper indicating the genes and their fasta sequences. \n
 [Paper](https://www.sciencedirect.com/science/article/abs/pii/S1087184518303293)
-![](../img/EDERM.jpg)
+![](../img/EDERM.jpg) \n
 This paper has the details I was looking for, and pulled out the fasta sequences for each of the genes found in the loci. 
 SLA2, Hypothetical protein, MAT 1-1-1, MAT 1-1-4, APN2.
 
@@ -123,7 +123,7 @@ This is where the GFF3 files will come in handy - and you'll just need grep to h
 
 Type in:
 ```bash
-grep SEQID genome.gff3
+grep "SEQID" genome.gff3
 ```
 
 This will pull up all the instances that seqid appears in your GFF3 file. Looking at the results you'll see the coordinates as well as the scaffold the protein is found in.
