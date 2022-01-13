@@ -131,36 +131,30 @@ Opening this file you'll see regions to "Trim" and regions to "Exclude".
 
 Here are some tips to get rid of each. 
 The scaffolds to exclude will require removing entire scaffolds.
-try:
-```
-module load BBMap
-filterbyname.sh in=original.fasta out=cleaned.fasta names=text_of_scaffold_names_only.txt exclude
-```
-Your output fasta file should have the scaffolds you've described in your text_of_scaffold_names_only.txt will be cleared. 
-A way to check this.
+try Jason's scripts:
 
-Load conda environment for bioawk. 
-
+Git Clone this repo into the folder you want to do your cleaning.
 ```
-bioawk -c fastx '{ print $name, length($seq) }' < cleaned.fasta
+git clone https://github.com/hyphaltip/autovectorscreen
 ```
-This will spit out all the scaffolds in your fasta file along with the length of each contigs.
 
-As for the trimmed option do:
+Right click and copy address of each txt file in your "Fix" page. Paste the txt file into your page. You'll probably have to rename it from index.html to the full name.
 
 ```
-bedtools maskfasta -mc X -fi cleaned.fasta -bed bed_file_or_just_text_with_scaffold_start_stop.txt -fo masked.fasta
+wget remainingcontamination_exophiala_dermatitidis_ex12.txt
 ```
-Basically the bed file should contain just three tab lines. Scaffold, start, stop but in tab format. 
-This line replaces those regions with a series of X's.
+Once done, move your old scaffold file to the same directory
+mv Exophiala_dermatitidis_Ex4.sorted.fasta path/to/working/directory/
 
-Next line:
-```
-sed 's/X//g' masked.fasta > final.fasta
-```
-This will replace the X's you've masked by removing them completely.
+now run the program autovectorscreen.
 
-Try resubmitting the genomes now and see if this cleared your issues.
+```
+python autovectorscreen/scripts/clean_ncbi_tagged.py Exophiala_dermatitidis_Ex4.sorted.fasta remainingcontamination_exophiala_dermatitidis_ex12.txt
+```
+
+This will generate a log file and a new fasta file where it removed regions (either trim or exclude). Rename this file and move it back into your annotation pipeline.
+Redo analysis and generate new files to deposit.
+Repeat as necessary, for some reason NCBI doesn't give you all the errors in the beginning and may give you pieces of mitochondrial data and others every round.
 
 ## Annotated genomes
 
