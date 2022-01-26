@@ -97,8 +97,8 @@ Script: `02_blobtools_blast.sh`
 #!/bin/bash
 ##
 #SBATCH -p intel,batch
-#SBATCH -o logs/02_blast.log.txt
-#SBATCH -e logs/02_blast.log.txt
+#SBATCH -o logs/02_blast.log
+#SBATCH -e logs/02_blast.log
 #SBATCH --nodes=1
 #SBATCH --ntasks=24 # Number of cores
 #SBATCH --mem=64G # Memory pool for all cores (see also --mem-per-cpu)
@@ -126,7 +126,7 @@ SAMPFILE=$ASMDIR/samples.txt
 
 
 IFS=
-tail -n +2 $SAMPFILE | sed -n ${N}p | while read PREFIX 
+tail -n +2 $SAMPFILE | sed -n ${N}p | while read PREFIX FWD REV
 do 
 	ASSEMBLY=$(realpath ${ASMDIR}/$PREFIX.fasta)
 
