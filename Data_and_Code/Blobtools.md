@@ -69,11 +69,11 @@ CPU=24
 COV=coverage
 TAXFOLDER=taxonomy
 OUTPUT=blobtools
-SAMPFILE=$ASMDIR/samples.txt
-#tab-delim file with PREFIX and then the assembly names if you have multiple assemblies
+SAMPFILE=$ASMDIR/samples.csv
+#csv file with PREFIX and then the assembly names if you have multiple assemblies
 #and also the prefix for the FWD and REV read sets
 
-IFS=
+IFS=,
 tail -n +2 $SAMPFILE | sed -n ${N}p | while read PREFIX FWD REV
 do 
 	ASSEMBLY=$(realpath ${ASMDIR}/$PREFIX.fasta)
@@ -120,12 +120,12 @@ COV=coverage
 
 TAXFOLDER=taxonomy
 OUTPUT=blobtools
-SAMPFILE=$ASMDIR/samples.txt
-#tab-delim file with PREFIX and then the assembly names if you have multiple assemblies
+SAMPFILE=$ASMDIR/samples.csv
+#csv file with PREFIX and then the assembly names if you have multiple assemblies
 #and also the prefix for the FWD and REV read sets
 
 
-IFS=
+IFS=,
 tail -n +2 $SAMPFILE | sed -n ${N}p | while read PREFIX FWD REV
 do 
 	ASSEMBLY=$(realpath ${ASMDIR}/$PREFIX.fasta)
@@ -171,11 +171,11 @@ COV=coverage
 TAXFOLDER=taxonomy
 OUTPUT=blobtools
 
-SAMPFILE=data/samples.txt
-#tab-delim file with PREFIX and then the assembly names if you have multiple assemblies
+SAMPFILE=data/samples.csv
+#csv file with PREFIX and then the assembly names if you have multiple assemblies
 #and also the prefix for the FWD and REV read sets
 
-IFS=
+IFS=,
 tail -n +2 $SAMPFILE | sed -n ${N}p | while read PREFIX FWD REV
 do
 	
@@ -230,12 +230,12 @@ OUTPUT=blobtools
 READDIR=input
 ASMDIR=data
 
-SAMPFILE=data/samples.txt
+SAMPFILE=data/samples.csv
 
 TAXDUMP=/srv/projects/db/blobPlotDB/taxonomy/
 #TAXDUMP=/rhome/cassande/bigdata/software/blobtoolkit/taxdump/
 
-IFS=
+IFS=,
 tail -n +2 $SAMPFILE | sed -n ${N}p | while read PREFIX FWD REV
 do
 	
