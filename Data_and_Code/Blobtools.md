@@ -277,7 +277,7 @@ blobtools view --interactive $PREFIX
 
 ![](../img/Example_blobtools.png)
 
-Example of a blobtools view - you can see there are many contigs with low coverage (< 0.1) that have been flagged as containing segements that mapped to bacteria/viruses here. 
+Example of a blobtools view - you can see there are many contigs with low coverage (< 0.1) that have been flagged as containing segments that mapped to bacteria/viruses here. Also many of these have higher GC content than the the eukaryotic portion of the genome. Note - for blobtools I would use the higher taxonomic levels and not rely on lower level ranks.
 
 After you have looked at your results interactively, you can either download csv/tsvs from the viewer directly of which contigs you would like to filter out or make a list of parameters to use via the command line with the blobtools filter command (more info here: https://blobtoolkit.genomehubs.org/blobtools2/blobtools2-tutorials/filtering-a-dataset/). You can also download svg or png images of the blobtools view with different parameters and fitlers. If you have any trouble downloading the views as images, try switching web browers - I've had sucess with Google Chrome.
 
