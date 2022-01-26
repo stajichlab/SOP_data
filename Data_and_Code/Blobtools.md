@@ -102,9 +102,6 @@ Script: `02_blobtools_blast.sh`
 #SBATCH --nodes=1
 #SBATCH --ntasks=24 # Number of cores
 #SBATCH --mem=64G # Memory pool for all cores (see also --mem-per-cpu)
-#SBATCH --mail-type=END # notifications for job done & fail
-#SBATCH --mail-user=cassande@ucr.edu # send-to address
-#SBATCH -D /rhome/cassande/bigdata/Massospora_contam_assessment/
 #SBATCH -J Blob_blast
 
 
