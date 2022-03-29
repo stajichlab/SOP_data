@@ -2,11 +2,29 @@
 
 ## Downloading from NCBI Genomes
 
+See how to use NCBI datasets to download
+* https://github.com/1KFG/NCBI_fungi
+
 ## Downloading from FungiDB
+
+* curl and wget examples from https://fungidb.org/fungidb/app/downloads/Current_Release/
 
 ## Downloading from JGI
 
+### Using Globus 
+
+### Using scripts to parse download XML
+
+(expand examples from https://github.com/zygolife/LCG_Assembly/tree/master/data/download_scripts
+and https://github.com/stajichlab/DrylandAlgae_Genomes)
+
+
 ## Downloading from Ensembl Genomes
+
+lftp and curl automation of download from https://ensemblgenomes.org/ see also 
+https://github.com/1KFG/2019_dataset/tree/master/scripts
+and 
+https://github.com/1KFG/2019_dataset/
 
 ## Downloading from SRA
 
@@ -53,7 +71,6 @@ Here's an example using array-jobs in slurm. There is a file called `lib/sra.txt
 #!/usr/bin/bash
 #SBATCH -p short -N 1 -n 16 --mem 8gb --out logs/download_sra.%a.log
 
-module load sratoolkit
 module load parallel-fastq-dump
 module load workspace/scratch
 
