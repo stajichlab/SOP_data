@@ -20,7 +20,7 @@ After submitting samples to be sequenced you will receive demultiplexed samples.
 We need to remove the sequencing bits off our DNA.
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=240G --time=10-00:00:00 --job-name="MAG ASSEMBLY.2" --out logs/MAG.asm.1.%a.log
+#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.2" --out logs/MAG.asm.1.%a.log
 
 module load BBMap
 METAG=samples.csv  #this will be a separate file in your folder that lists your metagenome files if you have more than 1.
@@ -52,7 +52,7 @@ done
 We need to correct for sequencing read depth.
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=240G --time=10-00:00:00 --job-name="MAG ASSEMBLY.2" --out logs/MAG.asm.2.%a.log
+#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.2" --out logs/MAG.asm.2.%a.log
 
 module load BBMap
 METAG=samples.csv  #this will be a separate file in your folder that lists your metagenome files if you have more than 1.
@@ -83,7 +83,7 @@ done
 Let's put them all together now.
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=240G --time=10-00:00:00 --job-name="MAG ASSEMBLY.3" --out logs/MAG.asm.3.%a.log
+#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.3" --out logs/MAG.asm.3.%a.log
 
 module load BBMap
 METAG=samples.csv  #this will be a separate file in your folder that lists your metagenome files if you have more than 1.
@@ -115,7 +115,7 @@ done
 Correct our error reads
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=240G --time=10-00:00:00 --job-name="MAG ASSEMBLY.4" --out logs/MAG.asm.4.%a.log
+#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.4" --out logs/MAG.asm.4.%a.log
 
 module load spades/3.15.4
 METAG=samples.csv  #this will be a separate file in your folder that lists your metagenome files if you have more than 1.
@@ -147,7 +147,7 @@ done
 
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=240G --time=10-00:00:00 --job-name="MAG ASSEMBLY.5" --out logs/MAG.asm.5.%a.log
+#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.5" --out logs/MAG.asm.5.%a.log
 
 module load spades/3.15.4
 METAG=samples.csv  #this will be a separate file in your folder that lists your metagenome files if you have more than 1.
@@ -178,7 +178,7 @@ done
 ## 6. Map Reads to Assembly - Different tools than Autometa
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=240G --time=10-00:00:00 --job-name="MAG ASSEMBLY.6" --out logs/MAG.asm.6.%a.log
+#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.6" --out logs/MAG.asm.6.%a.log
 
 module load bwa-mem2/2.0
 module load samtools/1.11
