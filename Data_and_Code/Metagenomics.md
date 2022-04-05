@@ -20,7 +20,7 @@ After submitting samples to be sequenced you will receive demultiplexed samples.
 We need to remove the sequencing bits off our DNA.
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.2" --out logs/MAG.asm.1.%a.log
+#SBATCH -p batch --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.2" --out logs/MAG.asm.1.%a.log
 
 module load BBMap
 METAG=samples.csv  #this will be a separate file in your folder that lists your metagenome files if you have more than 1.
@@ -44,15 +44,24 @@ fi
 IFS=,
 tail -n +2 $METAG | sed -n ${N}p | while read SAMPLE
 do
-bbduk.sh -Xmx1g in1=${SAMPLE}_R1_001.fastq in2=${SAMPLE}_R2_001.fastq out1=${SAMPLE}_R1_CLEANEST.fastq out2=${SAMPLE}_R2_CLEANEST.fastq rcomp=t ktrim=r k=23 mink=11 ref=adapters hdist=1 maq=10 minlen=51 trimq=20 tpe tbo
+	bbduk.sh -Xmx1g in1=${SAMPLE}_R1_001.fastq.gz in2=${SAMPLE}_R2_001.fastq.gz out1=${SAMPLE}_R1_CLEANEST.fastq out2=${SAMPLE}_R2_CLEANEST.fastq rcomp=t ktrim=r k=23 mink=11 ref=adapters hdist=1 maq=10 minlen=51 trimq=20 tpe tbo
 done
+```
+
+### 1b. Confirm indexes are Removed - running FastQC
+Run this on your original sample, and again after trimming to make sure your samples have been cleaned
+```
+module load fastqc
+
+fastqc ${SAMPLE}_R1_001.fastq.gz ${SAMPLE}_R2_001.fastq.gz --noextract -o FastQC
+
 ```
 
 ## 2. Normalizing Read Depth/Coverage
 We need to correct for sequencing read depth.
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.2" --out logs/MAG.asm.2.%a.log
+#SBATCH -p batch --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.2" --out logs/MAG.asm.2.%a.log
 
 module load BBMap
 METAG=samples.csv  #this will be a separate file in your folder that lists your metagenome files if you have more than 1.
@@ -76,14 +85,14 @@ fi
 IFS=,
 tail -n +2 $METAG | sed -n ${N}p | while read SAMPLE
 do
-bbnorm.sh in1=${SAMPLE}_L001_R1_CLEANEST.fastq in2=${SAMPLE}_L001_R2_CLEANEST.fastq out1=${SAMPLE}_L001_R1_normalized.fastq out2=${SAMPLE}_L001_R2_normalized.fastq target=100 min=5
+	bbnorm.sh in1=${SAMPLE}_L001_R1_CLEANEST.fastq in2=${SAMPLE}_L001_R2_CLEANEST.fastq out1=${SAMPLE}_L001_R1_normalized.fastq out2=${SAMPLE}_L001_R2_normalized.fastq target=100 min=5
 done    
 ```
 ## 3. Merging Your Reads
 Let's put them all together now.
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.3" --out logs/MAG.asm.3.%a.log
+#SBATCH -p highmem --nodes=1 --ntasks=1 --cpus-per-task=1 --mem-per-cpu=500G --time=10-00:00:00 --job-name="MAG ASSEMBLY.3" --out logs/MAG.asm.3.%a.log
 
 module load BBMap
 METAG=samples.csv  #this will be a separate file in your folder that lists your metagenome files if you have more than 1.
@@ -107,7 +116,7 @@ fi
 IFS=,
 tail -n +2 $METAG | sed -n ${N}p | while read SAMPLE
 do
-bbmerge-auto.sh -Xmx500g in1=${SAMPLE}_L001_R1_normalized.fastq in2=${SAMPLE}_L001_R2_normalized.fastq out=${SAMPLE}_normalized_merged.fastq outu=${SAMPLE}_normalized_unmerged.fastq ihist=${SAMPLE}_ihist.txt ecct extend2=20
+	bbmerge-auto.sh -Xmx500g in1=${SAMPLE}_L001_R1_normalized.fastq in2=${SAMPLE}_L001_R2_normalized.fastq out=${SAMPLE}_normalized_merged.fastq outu=${SAMPLE}_normalized_unmerged.fastq ihist=${SAMPLE}_ihist.txt ecct extend2=20
 done
 ```
 
@@ -115,7 +124,7 @@ done
 Correct our error reads
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.4" --out logs/MAG.asm.4.%a.log
+#SBATCH -p batch --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.4" --out logs/MAG.asm.4.%a.log
 
 module load spades/3.15.4
 METAG=samples.csv  #this will be a separate file in your folder that lists your metagenome files if you have more than 1.
@@ -139,7 +148,7 @@ fi
 IFS=,
 tail -n +2 $METAG | sed -n ${N}p | while read SAMPLE
 do
-spades.py -1 ${SAMPLE}_L001_R1_normalized.fastq -2 ${SAMPLE}_L001_R2_normalized.fastq --merged ${SAMPLE}_normalized_merged.fastq -o ${SAMPLE}_spades_error_corrected_reads -t 4 --meta --only-error-correction
+	spades.py -1 ${SAMPLE}_L001_R1_normalized.fastq -2 ${SAMPLE}_L001_R2_normalized.fastq --merged ${SAMPLE}_normalized_merged.fastq -o ${SAMPLE}_spades_error_corrected_reads -t 4 --meta --only-error-correction
 done
 ```
 
@@ -147,7 +156,7 @@ done
 
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.5" --out logs/MAG.asm.5.%a.log
+#SBATCH -p batch --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.5" --out logs/MAG.asm.5.%a.log
 
 module load spades/3.15.4
 METAG=samples.csv  #this will be a separate file in your folder that lists your metagenome files if you have more than 1.
@@ -171,14 +180,14 @@ fi
 IFS=,
 tail -n +2 $METAG | sed -n ${N}p | while read SAMPLE
 do
-metaspades.py -1 ${SAMPLE}_L001_R1_normalized_error_corrected.fastq.gz -2 ${SAMPLE}_L001_R2_normalized_error_corrected.fastq.gz --merged ${SAMPLE}_normalized_merged_error_corrected.fastq.gz -s ${SAMPLE}_L001_R_unpaired_error_corrected.fastq.gz -o ${SAMPLE}_assembly_SPades --meta -t 4 --only-assembler
+	metaspades.py -1 ${SAMPLE}_L001_R1_normalized_error_corrected.fastq.gz -2 ${SAMPLE}_L001_R2_normalized_error_corrected.fastq.gz --merged ${SAMPLE}_normalized_merged_error_corrected.fastq.gz -s ${SAMPLE}_L001_R_unpaired_error_corrected.fastq.gz -o ${SAMPLE}_assembly_SPades --meta -t 4 --only-assembler
 done
 ```
 
 ## 6. Map Reads to Assembly - Different tools than Autometa
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.6" --out logs/MAG.asm.6.%a.log
+#SBATCH -p batch --nodes=1 --ntasks=1 --cpus-per-task=12 --mem-per-cpu=24G --time=10-00:00:00 --job-name="MAG ASSEMBLY.6" --out logs/MAG.asm.6.%a.log
 
 module load bwa-mem2/2.0
 module load samtools/1.11
@@ -225,7 +234,7 @@ Using Autometa to help take our assembly reads, determine taxonomy, predictions,
 cat 01_make_cov.sh
 ```
 #!/usr/bin/bash
-#SBATCH -p batch,intel --mem 32gb -N 1 -n 24 --out logs/autometa_taxonomy.%a.%A.log
+#SBATCH -p batch --mem 32gb -N 1 -n 24 --out logs/autometa_taxonomy.%a.%A.log
 
 # see module load below
 
