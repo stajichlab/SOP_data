@@ -1,4 +1,4 @@
-##How to Run BLAST on the Commandline
+# How to Run BLAST on the Commandline
 
 Sounds like you're interested in running Blast on the command line. There are some really easy steps to complete this.
 
@@ -25,7 +25,7 @@ Create the directory you want to keep everything contained in and follow the nex
 > To obtain the nucleotide file, download the genome using the same steps above: `curl -O https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/149/205/GCF_000149205.2_ASM14920v2/GCF_000149205.2_ASM14920v2_genomic.fna.gz`
 
 
-##Now you have both file types to work with. Sometimes you will be lucky and have both, sometimes you won't have all that luck.
+## Now you have both file types to work with. Sometimes you will be lucky and have both, sometimes you won't have all that luck.
 Remember how many types of NCBI BLAST commands there are: blastn, blastp, blastx, tblastn. Familiarize yourself with these concepts before progressing.
 You can emulate the exact same set of commands from the website [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) on the commandline using the module `ncbi-blast/2.13.0+`.
 
