@@ -1,4 +1,4 @@
-#How to Run BLAST on the Commandline
+##How to Run BLAST on the Commandline
 
 Sounds like you're interested in running Blast on the command line. There are some really easy steps to complete this.
 
