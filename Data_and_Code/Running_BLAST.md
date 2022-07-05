@@ -34,7 +34,7 @@ Once loaded in you can check all the other programs by typing in -h next to each
 
 It should spit out a comprehensive manual for each command. If you can't find exactly how to work this, check online for resources.
 
-### In order to properly run your BLAST search make sure you prepare your database.
+## In order to properly run your BLAST search make sure you prepare your database.
 In this case, your database will be the genome/protein file you have pulled from NCBI.
 
 To create your database run, `makeblastdb -in YOUR_ORGANISM_GENOME.fna.fasta -dbtype nucl -out YOUR_ORGANISM` if you have a protein file change the -dbtype tag to `prot` instead.
