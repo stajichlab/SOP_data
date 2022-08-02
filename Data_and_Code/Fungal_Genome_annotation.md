@@ -176,7 +176,7 @@ Once complete you should see a annotate/YOUR_GENOME_SPECIES/training folder.
 cat 03_predict.sh
 ```
 [03_predict.sh](https://github.com/stajichlab/funannotate_template/blob/main/pipeline/03_predict.sh)
-```
+
 Now that you have finally set up and masked and trained your genome, running this step is one of the main results from this pipeline. You can either use the RNASeq data to generate a better predicted genome, or you can skip the prior step and move on to this step to run the prediction denovo.
 Make sure the line in this script says: ```tail -n +2 $SAMPFILE | sed -n ${N}p | while read SPECIES STRAIN PHYLUM LOCUSTAG```
 Check your annotate/YOUR_GENOME_SPECIES/predict_results to see if the program has run to completion. You will see a series of files including gbk, gff3 and protein files. But you are not done just yet!!
@@ -186,6 +186,7 @@ Check your annotate/YOUR_GENOME_SPECIES/predict_results to see if the program ha
 cat 04_update.sh
 ```
 [04_update.sh](https://github.com/stajichlab/funannotate_template/blob/main/pipeline/04_update.sh)
+
 Make sure the line in this script says: ```tail -n +2 $SAMPFILE | sed -n ${N}p | while read SPECIES STRAIN PHYLUM LOCUSTAG```
 Check your annotate/YOUR_GENOME_SPECIES/update_results to see if the program has run to completion. You will see a series of files including gbk, gff3 and protein files. But you are not done just yet!!
 
