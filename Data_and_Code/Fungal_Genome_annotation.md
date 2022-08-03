@@ -48,7 +48,7 @@ The HPCC instructions include the steps to initialize a database followed by you
 Make sure your directory has the following:
 * genomes/    This folder should contain the genomes you would like to annotate. Generally this is a genome you have run AAFTF or any other assembly program on. We recommend you also sort this genome from largest scaffold to the smallest too. You can do this using [AAFTF sort](https://github.com/stajichlab/AAFTF).
 * logs/    This will be a folder where all the log files will be added to. This way you can come to this folder and see what went wrong!
-* pipeline/    This folder will hold your scripts. You can find [them here](https://github.com/stajichlab/funannotate_template/pipeline)
+* pipeline/    This folder will hold your scripts. You can find [them here](https://github.com/stajichlab/funannotate_template/pipeline/
 * samples.csv    This text file will contain all your strain information. The [scripts here](https://github.com/stajichlab/funannotate_template) are prepared for more than one genome to be annotated in an array. If you don't have more than one sample you can still add this into the text file.
 * lib/augustus/3.3/config/    Folder you can find this.. (WHERE??) This folder can also contain your protein.aa file for your genome, along with your [.sbt file](https://submit.ncbi.nlm.nih.gov/genbank/template/submission/) you should generate from NCBI if you are planning on submitting this genome online.
 Your samples.csv file should look like:
