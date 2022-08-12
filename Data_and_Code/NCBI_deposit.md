@@ -74,7 +74,22 @@ Genomes can be deposited as simply and assembly (FastA format) or an assembly wi
 The first page for genome submission is the [submit.ncbi.nih.gov](http://submit.ncbi.nih.gov).
 ![NCBI submit Front](../img/ncbi_submit_genome_GWSS_1.png)
 
-You'll need to know how your assembly was constructed and what assembly tools and dates or version of the tools. You will also need to have already created a BioProject and BioSample for this genome. You should also plan to deposit the raw sequence reads in the SRA but you can do that after the genome is deposited.
+Select a GenBank WGS genome submission to begin a new submission or continue an existing one. Once you have entered there you can choose to start a new submission 'New submission' button or click on an unfinished/in-progress one if you started something and need to come back.
+
+![NCBI Genome Create New](../img/ncbi_submit_genome_GWSS_2.png)
+
+The next page is where the primary submitted info is included. This could be a group account for a lab or an individual. There are ways to also create group-shared submission teams if you want to give permission to your other collaborators. Weirdly you can only make one of these groups for yourself but you can be part of many other ones.  It may be important if you will be leaving the lab at some point to make sure to specify that your PI has permission to update any genome record so that fixes and updates can be applied to a genome.
+
+![NCBI Genome - Depositing Author Information](../img/ncbi_submit_genome_GWSS_3.png)
+
+The next page will require of entry about this project and genome including the BioProject and BioSample associated with the record. You will also need to have already created a BioProject and BioSample for this genome. You should also plan to deposit the raw sequence reads in the SRA but you can do that after the genome is deposited.
+
+This example is for a single genome - there are options to do a bulk upload if you have a raft of genomes to put up as part of a single project. This requires some communication with NCBI as there can only be a single BioProject in the upload step but there is a way to provide NCBI curators with a table that links genome to BioProject as well.
+
+But this example is just for a single genome deposition. You can specify a release for the genome - it can be immediately or a specified date in the future.  However if you set a  date you can easily come in and change it to a different later or earlier date in the system. NCBI also typically emails the primary submitted a few days before an embargo is expiring in case you need to ask for additional time (they typically do this in increments of 6 months I believe).
+![NCBI Genome Assembly Info - Part 1](../img/ncbi_submit_genome_GWSS_4A.png)
+
+The next part of this same page is where assembly info is also recorded. You'll need to know how your assembly was constructed and what assembly tools and dates or version of the tools.
 
 Depth of coverage of a genome calculated from total read amount and genome assembly size (bbcount or calculating this in mosdepth if you have a bam/cram file for your datasets aligned back to the genome).
 
@@ -107,7 +122,15 @@ MEM=64
 bbmap.sh -Xmx${MEM}g ref=GENOME.fasta in=LEFTREADS.fastq.gz in2=RIGHTREADS.fastq.gz statsfile=remapped_reads.bbmap_summary.txt
 ```
 
-Once you have an annotations
+![NCBI Genome Assembly Info - Part 2](../img/ncbi_submit_genome_GWSS_4B.png)
+
+The bottom of this page finall shows the rest of the questions which also allow you to specify a short description of this so you can easily remember which project this is for. In addition you can provide comments for NCBI curators as they check the deposition.  There is an option to let NCBI remove any vector contamination from the assembly for you - this is usually something you will have tried to do before. However in some cases, a workflow is to generate a genome assembly and do test deposit of a genome and allow NCBI to find and remove vector sequence. Using this cleaned assembly you can then run annotation pipeline and then submit this annotation as an update to this genome later on. I have not done this routinely but it has some value. We have tried to implement local vector and contamination cleanup as part of [AAFTF](http://github.com/stajichlab/AAFTF) but it still misses a few things NCBI detects and may need an update.
+
+![NCBI Genome Assembly Info - Part 3](../img/ncbi_submit_genome_GWSS_4C.png)
+
+This page is for telling NCBI if the genome is completely assembly or still in fragements. Using this page you can upload genome files directly via your browser or follow directions on how to upload on the command line.
+
+![NCBI Genome Uploading Info](../img/ncbi_submit_genome_GWSS_5.png)
 
 ### Uploading Genome data
 
@@ -122,8 +145,7 @@ ascp -i $ASPERAKEY -QT -l 300m -k1 -d ./*.sqn subasp@upload.ncbi.nlm.nih.gov:upl
 You specify a folder name (`A_UNIQUE_NAME_FOLDER`) for a particular project upload.
 
 
-
-## Annotated genomes
+## Annotated Bacteria genomes
 
 For Bacteria there is a simple way to get these annotations and genome deposited in one go. Simply use the [PGAP](https://www.ncbi.nlm.nih.gov/genome/annotation_prok/) procedure.  The Genome submission portal is still used for uploading but then an option to annotate
 
