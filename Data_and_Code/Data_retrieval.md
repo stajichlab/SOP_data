@@ -11,7 +11,7 @@ See how to use NCBI datasets to download
 
 ## Downloading from JGI
 
-### Using Globus 
+### Using Globus
 
 ### Using scripts to parse download XML
 
@@ -21,20 +21,20 @@ and https://github.com/stajichlab/DrylandAlgae_Genomes)
 
 ## Downloading from Ensembl Genomes
 
-lftp and curl automation of download from https://ensemblgenomes.org/ see also 
+lftp and curl automation of download from https://ensemblgenomes.org/ see also
 https://github.com/1KFG/2019_dataset/tree/master/scripts
-and 
+and
 https://github.com/1KFG/2019_dataset/
 
 ## Downloading from SRA
 
 The SRAtoolkit provides built-in tools for downloading datasets.
 
-This uses the HPCC module `workspace/scratch` which defines the `$SCRATCH` env variable. 
+This uses the HPCC module `workspace/scratch` which defines the `$SCRATCH` env variable.
 
 ```
-#!/usr/bin/bash
-#SBATCH -p stajichlab -N 1 -n 1 --mem 8gb --out dump.%a.log
+#!/usr/bin/bash -l
+#SBATCH -p batch -N 1 -n 1 --mem 8gb --out dump.%a.log
 module load sratoolkit
 module load aspera
 module load workspace/scratch
@@ -67,8 +67,11 @@ The SRA format to fastq conversion is applied by the fastq-dump tool.
 
 Here's an example using array-jobs in slurm. There is a file called `lib/sra.txt` where each line is an SRA accession number.
 
+This will use $SCRATCH variable (/scratch/$USERID/$SLURMJOBID) to write files so as long as there is enough space to run multiple downloads simultaneously and run the fastq dumping this can all proceed faster.  This example is intended to be an array job where each SRA download is run as a separate job so you would submit it as
+`sbatch -a 1-10 download.sh` if the script was named `download.sh` and the `lib/sra.txt` had 10 lines for 10 SRR runs to download.
+
 ```
-#!/usr/bin/bash
+#!/usr/bin/bash -l
 #SBATCH -p short -N 1 -n 16 --mem 8gb --out logs/download_sra.%a.log
 
 module load parallel-fastq-dump
