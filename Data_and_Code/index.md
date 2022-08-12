@@ -17,6 +17,7 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
 * [Fungal Genome_Assembly_with_Illumina_Reads](Genome_Assembly_with_Illumina_Reads)
 * [Fungal Genome annotation](Fungal_Genome_annotation)
 * [Hybrid Assembly](Hybrid_genome_assembly)
+* [Contamination assessment](Blobtools)
 
 ## Amplicon Analysis
 
@@ -31,6 +32,10 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
   * Data cleaning
   * Metagenome Assembly
   * Metagenome annotation and Analysis
+
+## Viral metagnomics
+* [KBase Viral Analysis](KBase_Viruses)
+* [UCR HPCC Cluster Viral Analysis](Cluster_Viruses)
 
 ## Phylogenomics
 

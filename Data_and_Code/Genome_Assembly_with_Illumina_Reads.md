@@ -8,7 +8,7 @@ In order to tell if your sequence results were conclusive run the program FastQC
 Our HPCC/cluster has it saved as a module. So load it in with module load fastqc.
 
 I always recommend running the help option for every new program you encounter this way you can see all the options available. 
-Type in fastqc -h to view the multiple options this program has.
+Type in fastqc -h to view the multiple options this program has. \n
 ![](../img/FastQC1.png)![](../img/FastQC2.png)![](../img/FastQC3.png)
 
 Make sure your files are in a proper folder. Create the folder `FastQC` in the same directory as your data. 
