@@ -199,6 +199,8 @@ Use the Transcriptome Sequence Archive (TSA). These will still require a minimum
 
 # Assembled Metagenomes or Metatranscriptomes
 
+See the [NCBI Info on submitting a Metagenome](https://www.ncbi.nlm.nih.gov/genbank/metagenome/#Submitting_WGS_project) for some details. 
+
 Assembled metagenomes can be deposited as well through the NCBI submission interface.  These will need a biosample that is derived from a metagenome taxonomic id. For example see one of our [Antarctic rock metagenomes: JAABUH000000000](https://www.ncbi.nlm.nih.gov/nuccore/JAABUH000000000) which has the biosample [SAMN10711871)](https://www.ncbi.nlm.nih.gov/biosample/SAMN10711871) and this sample has the taxonomy ID ["rock metagenome"](https://www.ncbi.nlm.nih.gov/taxonomy/1311626) as [1311626](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=1311626).
 
 These will be screened for vector or adaptor contamination and may trigger cleanup steps but it will not screen for cross-species contamination since it is a metagenome.
