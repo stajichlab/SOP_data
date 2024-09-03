@@ -39,7 +39,8 @@ Before annotating or assembling it is a good idea to start the BioSample and Bio
 
 ## Phylogenomics
 
-* [PHYling phylogenomics](Phylogenomics_with_PHYling)
+* [PHYling V1 phylogenomics](Phylogenomics_with_PHYling_V1)
+* [PHYling V2 phylogenomics](https://github.com/stajichlab/PHYling)
 
 ## Transcriptome
 
