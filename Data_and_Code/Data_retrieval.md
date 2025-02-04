@@ -51,7 +51,7 @@ ACC=acc.txt
 ACCNO=$(sed -n ${N}p $ACC | cut -f1)
 ASPERA=$(which ascp)
 if [ ! -f ${ACCNO}_1.fastq.gz ]; then
-	prefetch --ascp-path "$ASPERA|$ASPERAKEY" $ACCNO
+	prefetch --ascp-path "$ASPERA|$NCBIASPERAKEY" $ACCNO
 	fastq-dump --tmpdir $SCRATCH --defline-seq '@$sn[_$rn]/$ri' --split-files $ACCNO
 	perl -i -p -e 's/_reverse//' ${ACCNO}_2.fastq
 	perl -i -p -e 's/_forward//' ${ACCNO}_1.fastq

@@ -28,7 +28,7 @@ To do an upload you need to use  out your unique folder associated with your NCB
 ```
 module load aspera
 # (all one line)
-ascp -i $ASPERAKEY -QT -l500m -k1
+ascp -i $NCBIASPERAKEY -QT -l500m -k1
 -d <path/to/folder/containing files/>
 subasp@upload.ncbi.nlm.nih.gov:uploads/YOUREMAIL_XXXX/PRJYYY
 ```
@@ -117,7 +117,7 @@ The upload step will look something like this on the UCR HPCC where *YOUREMAIL_S
 
 ```
 module load aspera
-ascp -i $ASPERAKEY -QT -l 300m -k1 -d ./*.sqn subasp@upload.ncbi.nlm.nih.gov:uploads/YOUREMAIL_SECRETFOLDER/A_UNIQUE_NAME_FOLDER/
+ascp -i $NCBIASPERAKEY -QT -l 300m -k1 -d ./*.sqn subasp@upload.ncbi.nlm.nih.gov:uploads/YOUREMAIL_SECRETFOLDER/A_UNIQUE_NAME_FOLDER/
 ```
 You specify a folder name (`A_UNIQUE_NAME_FOLDER`) for a particular project upload.
 
